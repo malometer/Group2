@@ -4,9 +4,10 @@ set term jpeg
 
 
 
-set ylabel "y"
-set xlabel "x"
-set zlabel "u"
+set format x ""
+set format y ""
+unset key
+set title "dank. fields."
 set pm3d map
 set palette defined ( 0 "red", 1 "dark-red", 2 "black", 3 "blue", 4 "cyan")
 set size square
