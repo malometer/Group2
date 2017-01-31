@@ -10,10 +10,14 @@ void jacobi() {
     int j=0;
     int c=0;
     
+    cout << "here int eh jacobi" << endl;
     
     
     ofstream datafile;
     datafile.open("lageneric_data.dat",ios::out);
+    if (datafile.is_open()) {
+        cout << "Apparently it exists... somewhere" << endl;
+    }
 
     
     for(long int k=0; k<=loop; k++) {
@@ -38,6 +42,7 @@ void jacobi() {
     for (j=(grid-1);j>=0;j--){
         
         for (c=0;c<=(grid-1);c++) {
+            cout << "here in the loop" << endl;
             
             datafile << c << "	" << j << "	" << values[j][c] << "	   " << "\n";
             
@@ -46,5 +51,6 @@ void jacobi() {
     }
     
     datafile.close();
+    cout << "here at the end of Jacobi" << endl;
 }
 

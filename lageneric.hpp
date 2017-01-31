@@ -16,3 +16,4 @@ extern double values[10000][10000];
 extern bool bounds[10000][10000];
 extern double closeness, square_dist;
 extern double dist;
+int add_shapes();

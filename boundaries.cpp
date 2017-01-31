@@ -1,21 +1,23 @@
-
-
 #include "boundaries.hpp"
 #include "lageneric.hpp"
+#include "mainwindow.h"
 
 using namespace std;
 
 
 void circular_bound() {
     
-    double V0=0, a=0;
-    int cx=0,cy=0;
+    double V0=0;
+    double a=0;
+    int cx=0;
+    int cy=0;
     
 
     
-    
+
     cout << "Enter centre x" << endl;
     cin >> cx;
+//    cx = size.value();
     cout << "Enter centre y" << endl;
     cin >> cy;
     cout << "Input radius" << endl;

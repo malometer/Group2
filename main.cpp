@@ -1,12 +1,21 @@
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
+#include "mainwindow.h"
+#include <QString>
+#include <QApplication>
+#include <QGraphicsView>
+#include <QGraphicsScene>
+#include <QGraphicsPixmapItem>
+#include <iostream>
+
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication app(argc, argv);
+    //create user interface
+    QApplication app(argc, argv);
+    MainWindow mainWindow;
 
-    QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
+    mainWindow.show();
     return app.exec();
+ //   std::cout << "Complete" << std::endl;
+
 }

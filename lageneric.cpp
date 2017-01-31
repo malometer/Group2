@@ -30,7 +30,7 @@ int add_shapes() {
     cout << "Press 1 to add a simple boundary to your grid." << endl;
     cout << "Press 2 to add a radial boundary to your grid." << endl;
     cout << "Press 0 when done" << endl;
-    cin >> op;
+   // cin >> op;
     
     
     switch(op) {
@@ -55,50 +55,7 @@ int add_shapes() {
 
 
 
-int main() {
 
-    int done,op;
-    
-    cout << "Enter grid size (resolution)" << endl;
-    
-    cin >> grid;
-    
-    
-    for(int i=0; i<=grid; i++) {
-        for(int j=0; j<=grid; j++) {
-            
-            bounds[j][i] = true;
-            
-        }
-    }
-    
-    cout << "Enter # of loops" << endl;
-    
-    cin >> loop;
-    
-    do {
-        
-        done = add_shapes();
-        
-    } while (done == 0);
-
-    cout << "Specify your numerical method" << endl;
-    cout << "1: Jacobi" << endl;
-    cin >> op;
-    
-    
-    switch(op) {
-        case 1:
-            jacobi();
-            break;
-            
-    }
-    
-    cout << "All done! please run 'laplotter.sh'" << endl;
-
-
-    return 0;
-}
 
 
 
