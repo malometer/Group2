@@ -98,6 +98,10 @@ MainWindow::MainWindow(QWidget *parent)
     horizontal->move(5, 100); horizontal->setChecked(true);
     vertical->move(5, 150);
 
+    //check button checked
+    cout << Jacobi->isChecked() << endl;
+    cout << Gauss->isChecked() << endl;
+
 
     // set size and location of the buttons
     setGeometry(200, 200, 500, 500);    //of the window
@@ -129,8 +133,7 @@ void MainWindow::create_line()
 {
     cout << "create line" << endl;
     int grid = resolution->value();
-    double values[10000][10000];
-    bool bounds[10000][10000];
+
 
             int line=0;
             int choice=0;
@@ -162,23 +165,18 @@ void MainWindow::create_line()
                                         values[i][j]=V0;
                                         bounds[i][j]=false;
                                 }
+
                             }
                         }
+                        cout << bounds[i][j];
                 }
+                cout << endl;
             }
 }
 
 void MainWindow::create_circle()
 {
     cout << "create circle" << endl;
-    /*
-    int grid = resolution->value();
-    float i2, j2;
-    double values[10000][10000];
-    bool bounds[10000][10000];
-    double closeness, square_dist;
-    double dist;
-    */
 
     double V0=0, a=0;
     int cx=0,cy=0;
@@ -243,11 +241,7 @@ void MainWindow::create_circle()
 
 void MainWindow::JACOBI()
 {
-    /*
-    int grid = resolution->value(),loop = loops->value();
-    double values[10000][10000], values_new[10000][10000];
-    bool bounds[10000][10000];
-    */
+
     cout << "Jacobi" << endl;
 
             int m=0;
@@ -346,11 +340,7 @@ void MainWindow::JACOBI()
 void MainWindow::GAUSS()
 {
     cout << "gauss" << endl;
-    /*
-    int grid = resolution->value(),loop = loops->value();
-    double values[10000][10000];
-    bool bounds[10000][10000];
-    */
+
 
         int m=0;
         int i=0;
@@ -438,12 +428,7 @@ void MainWindow::GAUSS()
 void MainWindow::SOR()
 {
     cout << "sor" << endl;
-    /*
-    int grid = resolution->value(),loop = loops->value();
-    float w = relatation->value();
-    double values[10000][10000];
-    bool bounds[10000][10000];
-    */
+
 
         int m=0;
         int i=0;
@@ -478,11 +463,7 @@ void MainWindow::SOR()
 void MainWindow::run_code()
 {
     cout << "run" << endl;
-    /*
-    int grid,loop;
-    float w;
-    bool bounds[10000][10000];
-    */
+
 
     int op;
 
@@ -499,23 +480,27 @@ void MainWindow::run_code()
             loop = loops->value();
 
 cout << "past grid creation" << endl;
-            cin >> op;
-            if (Jacobi->isChecked()){
+// would not finish compilation after this point/ does not enter loop
+            if (Jacobi->isChecked() == 1){
                 op = 1;
+                cout << "jackie!"<< endl;
                 JACOBI();
                 cout << "jackie!"<< endl;
             }
-            else if (Gauss->isChecked()){
+            else if (Gauss->isChecked() == 1){
                 op = 2;
+                cout << "gauss" << endl;
                 GAUSS();
                 cout << "gauss" << endl;
             }
-            else if (sor->isChecked()){
+            else if (sor->isChecked() == 1){
                 op = 3;
+                cout << "soar!" << endl;
                 w = relatation->value();
                 SOR();
                 cout << "soar!" << endl;
             }
+            else {cout << "there is a problem with your code :(" << endl;}
 
 
             cout << "All done! please run 'laplotter.sh'" << endl;
