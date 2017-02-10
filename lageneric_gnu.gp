@@ -1,7 +1,7 @@
-set output "plot1.jpg"
 set term postscript color
 set term jpeg
 
+set output "plot1.ps"
 
 unset key
 set title "please work, please work... yey"

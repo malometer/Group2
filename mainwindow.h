@@ -2,22 +2,32 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QApplication>
+#include <QWidget>
 #include <QPushButton>
+
 #include <QLabel>
 #include <QSlider>
 #include <QImage>
 #include <QRadioButton>
 #include <QWindow>
+#include <QGraphicsScene>
+#include <QProgressBar>
+#include <QGroupBox>
 
-extern int grid,loop;
-extern float i2, j2, w;
-extern double values[10000][10000], values_new[10000][10000];
-extern bool bounds[10000][10000];
-extern double closeness, square_dist;
-extern double dist;
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <math.h>
+#include <stdint.h>
+#include <iostream>
+#include <sstream>
+#include <cmath>
+#include <fstream>
+
 
 namespace Ui {
-    class MainWindow;
+class MainWindow;
 }
 
 class MainWindow : public QMainWindow
@@ -26,6 +36,8 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    ~MainWindow();
+
 
 private slots:
     void create_line();
@@ -34,24 +46,52 @@ private slots:
     void JACOBI();
     void GAUSS();
     void SOR();
+    void task2();
 
 private:
+    Ui::MainWindow *ui;
+
+    QPushButton *push;
+
     //buttons
     QPushButton *linear;
     QPushButton *circle;
     QPushButton *complie;
+    QPushButton *plot1;
+    QPushButton *reset;
+    QPushButton *task22;
+    QPushButton *showline;
+    QPushButton *showcircle;
+    QPushButton *showtask2;
+
+
+    //group boxes
+    QGroupBox *initial;
+    QGroupBox *initilisecircle;
+    QGroupBox *initiliseline;
+    QGroupBox *tasktwo;
 
     //sliders
     QSlider *size;
     QSlider *resolution;
     QSlider *loops;
+    QSlider *relatation;
+
     QSlider *xcentre;
     QSlider *ycentre;
     QSlider *radius;
-    QSlider *displacement;
     QSlider *V01;
+
+    QSlider *displacement;
     QSlider *V02;
-    QSlider *relatation;
+
+// /* task two
+    QSlider *a2;
+    QSlider *w2;
+    QSlider *h2;
+    QSlider *d2;
+    QSlider *V2;
+//    */
 
     //radiobuttons
     QRadioButton *Jacobi;
@@ -61,6 +101,16 @@ private:
     QRadioButton *vertical;
     QRadioButton *hollow;
     QRadioButton *filled;
+
+    //image
+    QLabel *plot2;
+    QPixmap *plotone;
+    QGraphicsScene *scene;
+    QPixmap image;
+    QImage *plottwo;
+
+    //progress
+    QProgressBar *prog;
 
 };
 

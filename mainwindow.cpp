@@ -1,16 +1,7 @@
 #include "mainwindow.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <math.h>
-#include <stdint.h>
+#include "ui_mainwindow.h"
 #include <iostream>
-#include <sstream>
-#include <cmath>
-#include <fstream>
-#include <QCoreApplication>
-#include <iostream>
-#include <QGroupBox>
+
 using namespace std;
 
 int grid,loop;
@@ -21,24 +12,35 @@ double closeness, square_dist;
 double dist;
 
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
 {
+    ui->setupUi(this);
+
+    push = new QPushButton("Push", this);
+    connect(push, SIGNAL(clicked(bool)), this, SLOT(create_line()));
 
 
-    setGeometry(200, 200, 500, 500);
+    //inserting from twoparter
     setWindowTitle("Electrostatic simulation");
 
     //group boxes
     QGroupBox *initial = new QGroupBox("Grid values", this);
     QGroupBox *initilisecircle = new QGroupBox("circle", this);
     QGroupBox *initiliseline = new QGroupBox("lines", this);
-        //how does this work?
+    QGroupBox *tasktwo = new QGroupBox("task 2", this);
 
     // Create the button, make "this" the parent
     linear = new QPushButton("Create Line", initiliseline);
     circle = new QPushButton("Create Circle", initilisecircle);
-    complie = new QPushButton("Complie", this);
+    complie = new QPushButton("RUN", this);
+    plot1 = new QPushButton("Plot graph", this);
+    reset = new QPushButton("Reset", this);
+    task22 = new QPushButton("Task 2", tasktwo);
+    showline = new QPushButton("Create a line", this);
+    showcircle = new QPushButton("Create circles", this);
+    showtask2 = new QPushButton("Create Task 2", this);
 
     //create sliders
     resolution = new QSlider(Qt::Horizontal, initial);
@@ -51,6 +53,15 @@ MainWindow::MainWindow(QWidget *parent)
     V02 = new QSlider(Qt::Horizontal, initiliseline);
     relatation = new QSlider(Qt::Horizontal, initial);
 
+//    /* task two
+    a2 = new QSlider(Qt::Horizontal,tasktwo);
+    w2 = new QSlider(Qt::Horizontal,tasktwo);
+    h2 = new QSlider(Qt::Horizontal,tasktwo);
+    d2 = new QSlider(Qt::Horizontal,tasktwo);
+    V2 = new QSlider(Qt::Horizontal,tasktwo);
+//    */
+
+
     //create radio buttons
     Jacobi = new QRadioButton("Jacobi", initial);
     Gauss = new QRadioButton("Gauss Seidel", initial);
@@ -60,33 +71,77 @@ MainWindow::MainWindow(QWidget *parent)
     horizontal = new QRadioButton("horizontal", initiliseline);
     vertical = new QRadioButton("vertical", initiliseline);
 
+    //create progress
+    prog = new QProgressBar(this);      prog->move(70, 470);
+
     //create labels
-    QLabel *resl = new QLabel(initial);         resl->setText("REsolution");
-    QLabel *loopl = new QLabel(initial);        loopl->setText("Number of loops");
-    QLabel *xl = new QLabel(initilisecircle);   xl->setText("X position of \ncentre");
-    QLabel *yl = new QLabel(initilisecircle);   yl->setText("Y position of centre");
-    QLabel *rl = new QLabel(initilisecircle);   rl->setText("radius of circle");
-    QLabel *sl = new QLabel(initiliseline);     sl->setText("displacement of line from edge");
-    QLabel *v0l = new QLabel(initilisecircle);  v0l->setText("Voltage");
-    QLabel *v0l2 = new QLabel(initiliseline);   v0l2->setText("Voltage");
-    QLabel *methodl = new QLabel(initial);      methodl->setText("What method \nwould you \nlike to use \nto calculate \nthe numerical \nsolution");
+    QLabel *resl = new QLabel(initial);             resl->setText("Grid size");
+    QLabel *loopl = new QLabel(initial);            loopl->setText("Number of loops");
+    QLabel *xl = new QLabel(initilisecircle);       xl->setText("X position of \ncentre");
+    QLabel *yl = new QLabel(initilisecircle);       yl->setText("Y position of centre");
+    QLabel *rl = new QLabel(initilisecircle);       rl->setText("radius of circle");
+    QLabel *sl = new QLabel(initiliseline);         sl->setText("displacement of line from edge");
+    QLabel *v0l = new QLabel(initilisecircle);      v0l->setText("Voltage");
+    QLabel *v0l2 = new QLabel(initiliseline);       v0l2->setText("Voltage");
+    QLabel *methodl = new QLabel(initial);          methodl->setText("What method \nwould you \nlike to use \nto calculate \nthe numerical \nsolution");
+    QLabel *wl = new QLabel(initial);               wl->setText("relaxation value");
+    QLabel *text = new QLabel(initial);             text->setText("");
+
+    QLabel *vmin1 = new QLabel(initilisecircle);    vmin1->setText("-1");
+    QLabel *vmax1 = new QLabel(initilisecircle);    vmax1->setText("+1");
+    QLabel *vmin2 = new QLabel(initiliseline);      vmin2->setText("-1");
+    QLabel *vmax2 = new QLabel(initiliseline);      vmax2->setText("+1");
+    QLabel *resmax = new QLabel(initial);           resmax->setText("500");
+    QLabel *resmin = new QLabel(initial);           resmin->setText("1");
+    QLabel *lmax = new QLabel(initial);             lmax->setText("10000");
+    QLabel *lmin = new QLabel(initial);             lmin->setText("500");
+    QLabel *xmax = new QLabel(initilisecircle);     xmax->setText("499");
+    QLabel *xmin = new QLabel(initilisecircle);     xmin->setText("1");
+    QLabel *ymax = new QLabel(initilisecircle);     ymax->setText("499");
+    QLabel *ymin = new QLabel(initilisecircle);     ymin->setText("1");
+    QLabel *rmax = new QLabel(initilisecircle);     rmax->setText("250");
+    QLabel *rmin = new QLabel(initilisecircle);     rmin->setText("1");
+    QLabel *smax = new QLabel(initiliseline);       smax->setText("499");
+    QLabel *smin = new QLabel(initiliseline);       smin->setText("1");
+    QLabel *relmax = new QLabel(initial);           relmax->setText("1");
+    QLabel *relmin = new QLabel(initial);           relmin->setText("0");
 
 
     //set Groupboxes
-    initial->move(0,0);             initial->resize(250, 250);
-    initilisecircle->move(250, 0);  initilisecircle->resize(250, 250);
-    initiliseline->move(250, 250);  initiliseline->resize(250, 250);
+    initial->move(0,0);             initial->resize(250, 300);
+    initilisecircle->move(250, 0);  initilisecircle->resize(250, 250);      initilisecircle->hide();
+    initiliseline->move(250, 0);  initiliseline->resize(250, 250);        initiliseline->hide();
+    tasktwo->move(250, 0);          tasktwo->resize(250, 250);              tasktwo->hide();
 
     //set labels
-    resl->move(5, 60);      resl->setWordWrap(true);
-    loopl->move(5, 90);     loopl->setWordWrap(true);
+    resl->move(5, 50);      resl->setWordWrap(true);
+    loopl->move(5, 100);     loopl->setWordWrap(true);
     xl->move(5, 40);        xl->setWordWrap(true);
     yl->move(5, 80);       yl->setWordWrap(true);
     rl->move(5, 120);       rl->setWordWrap(true);
     sl->move(5, 50);        sl->setWordWrap(true);
     v0l->move(5, 150);      v0l->setWordWrap(true);
     v0l2->move(5, 200);     v0l->setWordWrap(true);
-    methodl->move(5, 150);  methodl->setWordWrap(true); //methodl->width(200);
+    methodl->move(5, 150);  methodl->setWordWrap(true);
+    wl->move(140, 240);     wl->setWordWrap(true);
+    vmin1->move(110, 165);
+    vmax1->move(180, 165);
+    vmin2->move(110, 215);
+    vmax2->move(180, 215);
+    resmax->move(180, 70);
+    resmin->move(110, 70);
+    lmax->move(180, 120);
+    lmin->move(110, 120);
+    xmax->move(180, 60);
+    xmin->move(110, 60);
+    ymax->move(180, 100);
+    ymin->move(110, 100);
+    smax->move(180, 70);
+    smin->move(110, 70);
+    rmax->move(180, 140);
+    rmin->move(110,140);
+    relmax->move(240,270);
+    relmin->move(170, 270);
 
 
     //set Radio Buttons
@@ -98,411 +153,119 @@ MainWindow::MainWindow(QWidget *parent)
     horizontal->move(5, 100); horizontal->setChecked(true);
     vertical->move(5, 150);
 
-    //check button checked
-    cout << Jacobi->isChecked() << endl;
-    cout << Gauss->isChecked() << endl;
-
 
     // set size and location of the buttons
     setGeometry(200, 200, 500, 500);    //of the window
-    linear->setGeometry(QRect(QPoint(10, 20), QSize(100, 30)));
-    circle->move(10,20); circle->resize(110, 30);
+    linear->setGeometry(QRect(QPoint(5, 20), QSize(100, 30)));
+    circle->move(5,20); circle->resize(110, 30);
     complie->move(400,470);
- //   textin->move(80,80);
+    plot1->move(5, 470);
+    task22->move(150, 150);
+    showline->move(5, 400);
+    showcircle->move(105, 400);
+    showtask2->move(205, 400);
+
 
     //set postion on sliders
-    resolution->move(110, 50);    resolution->setRange(1, 500);     resolution->setValue(500);
-    loops->move(110, 100);        loops->setRange(1, 500);          loops->setValue(250);
-    xcentre->move(110,40);        xcentre->setRange(1, 500);        xcentre->setValue((resolution->value())/2);
-    ycentre->move(110,80);       ycentre->setRange(1, 500);        ycentre->setValue((resolution->value())/2);
-    radius->move(110, 120);       radius->setRange(1, 500);         radius->setValue((resolution->value())/2);
-    displacement->move(110, 50);  displacement->setRange(1, 500);
+    resolution->move(110, 50);    resolution->setRange(1, 500);         resolution->setValue(499);
+    loops->move(110, 100);        loops->setRange(500, 10000);          loops->setValue(1000);
+    xcentre->move(110,40);        xcentre->setRange(1, 499);            xcentre->setValue((resolution->value())/2);
+    ycentre->move(110,80);        ycentre->setRange(1, 499);            ycentre->setValue((resolution->value())/2);
+    radius->move(110, 120);       radius->setRange(1, 250);             radius->setValue((resolution->value())/2);
+    displacement->move(110, 50);  displacement->setRange(1, 499);
     V01->move(110, 150);          V01->setRange(-1, 1);
     V02->move(110, 200);          V02->setRange(-1, 1);
-    relatation->move(150, 230);   relatation->setRange(0, 1);
+    relatation->move(170, 250);   relatation->setRange(0, 1);
+//    /* task two
+    a2->move(110, 5);
+    w2->move(110, 40);
+    h2->move(110, 70);
+    d2->move(110, 100);
+    V2->move(110, 130);
+//    */
 
+    QString chara = "";
+//    chara = initiliseline->isVisible();
+    text->move(150, 0);
+    text->setText(chara);
+
+cout << "AAAAAAAAHHHHHHHHH" << endl;
 
     // Connect button signal to appropriate slot
     connect(linear, SIGNAL (released()), this, SLOT (create_line()));
     connect(circle, SIGNAL(released()), this, SLOT (create_circle()));
     connect(complie, SIGNAL(released()), this, SLOT(run_code()));
+    connect(plot1, SIGNAL(pressed()), this, SLOT(plot()));
+    connect(reset, SIGNAL(released()), this, SLOT(clear()));
+    connect(task22, SIGNAL(released()), this, SLOT(task2()));
+
+    //Hide/show sections
+    connect(showcircle, SIGNAL(released()), initilisecircle, SLOT(show()));
+    connect(showcircle, SIGNAL(released()), initiliseline, SLOT(hide()));
+    connect(showcircle, SIGNAL(released()), tasktwo, SLOT(hide()));
+
+    connect(showline, SIGNAL(released()), initiliseline, SLOT(show()));
+    connect(showline, SIGNAL(released()), initilisecircle, SLOT(hide()));
+    connect(showline, SIGNAL(released()), tasktwo, SLOT(hide()));
+
+    connect(showtask2, SIGNAL(released()), tasktwo, SLOT(show()));
+    connect(showtask2, SIGNAL(released()), initilisecircle, SLOT(hide()));
+    connect(showtask2, SIGNAL(released()), initiliseline, SLOT(hide()));
+    //end
 
 }
 
-void MainWindow::create_line()
+MainWindow::~MainWindow()
 {
-    cout << "create line" << endl;
-    int grid = resolution->value();
-
-
-            int line=0;
-            int choice=0;
-            int V0=0;
-
-            if (horizontal->isChecked()) {
-                choice = 2;
-            }
-            else if (vertical->isChecked()){
-                choice = 1;
-            }
-
-            line = displacement->value();
-
-            V0 = V02->value();
-
-            for(int j=0; j<=grid-1; j++) {
-                for(int i=0; i<=grid-1; i++) {
-
-                        if( bounds[i][j]==true ) {
-                            if (choice == 1) {
-                        if ( i == line ) {
-                                        values[i][j]=V0;
-                                        bounds[i][j]=false;
-                                }
-
-                            } else if (choice == 2) {
-                                if ( j == line ) {
-                                        values[i][j]=V0;
-                                        bounds[i][j]=false;
-                                }
-
-                            }
-                        }
-                        cout << bounds[i][j];
-                }
-                cout << endl;
-            }
+    delete ui;
 }
 
-void MainWindow::create_circle()
-{
-    cout << "create circle" << endl;
-
-    double V0=0, a=0;
-    int cx=0,cy=0;
-    int fill = 1;
-
-    cx = xcentre->value();
-    cy = ycentre->value();
-    a = radius->value();
-    V0 = V01->value();
-
-    if (hollow->isChecked()) {
-        fill = 6;
-    }
-    else if (filled->isChecked()) {
-        fill = 7;
-    }
 
 
+void MainWindow::run_code() {
 
-/*	cx=50;
-    cy=50;
-    a=40;
-    V0=1;
-    fill=6;
-*/
-        for(int j=0; j<=grid; j++) {
-            for(int i=0; i<=grid; i++) {
+cout << "run" << endl;
 
-                    i2 = i - cx;
-                    i2 = i2*i2;
 
-                    j2 = j - cy;
-                    j2 = j2*j2;
+int op = 0;
 
-                    if (bounds[i][j] == true) {
+    grid = resolution->value();
 
-                        if (i2+j2<a*a) {
+    for(int i=0; i<=grid-1; i++) {
+        for(int j=0; j<=grid-1; j++) {
 
-                    if (fill == 7) {
-                        values[i][j]=V0;
-                                bounds[i][j]=false;
-                    }
-
-                        } else {
-
-                            bounds[i][j]=true;
-
-                            square_dist= i2 + j2;
-
-                            dist = sqrt(square_dist);
-                            closeness=abs(dist-a);
-
-                            if( closeness < 0.4 ) {
-                                    values[i][j]=V0;
-                                    bounds[i][j]=false;
-                            }
-                        }
-                    }
-            }
+            bounds[i][j] = true;
         }
-}
-
-void MainWindow::JACOBI()
-{
-
-    cout << "Jacobi" << endl;
-
-            int m=0;
-            int i=0;
-            int j=0;
-            int c=0;
-
-            ofstream datafile;
-            datafile.open("Users/Honi/updated/lageneric_data.dat",ios::out);
-
-        for(m=0; m<=(loop-1); m++) {
-                for (j=1;j<=(grid-2);j++) {
-                        for (i=1;i<=(grid-2);i++){
-                            if( bounds[i][j]==true ) {
-
-                                    values_new[i][j] = (1.0/4.0) * (values[i][j+1] + values[i][j-1] + values[i+1][j] + values[i-1][j]);
-
-                            }
-                        }
-                }
-
-
-
-
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-
-            for (i=1;i<=(grid-2);i++){
-                        j=grid-1;   // upper inner line
-                if( bounds[i][j]==true ) {
-
-                            values_new[i][j] = (1.0/4.0) * (values[i][j-1] + values[i+1][j] + values[i-1][j] + values[i][j]);
-                        }
-
-                j=0;  // lower inner line
-                if( bounds[i][j]==true ) {
-
-                                values_new[i][j] = (1.0/4.0) * (values[i][j+1] + values[i+1][j] + values[i-1][j] + values[i][j]);
-                        }
-                }
-
-            for (j=1;j<=(grid-2);j++){
-                    i=grid-1;   // right inner line
-                        if( bounds[i][j]==true ) {
-
-                                values_new[i][j] = (1.0/4.0) * (values[i][j+1] + values[i][j-1] + values[i-1][j] + values[i][j]);
-                        }
-
-                i=0;  // left inner line
-                        if( bounds[i][j]==true ) {
-
-                                values_new[i][j] = (1.0/4.0) * (values[i][j+1] + values[i][j-1] + values[i+1][j] + values[i][j]);
-                        }
-                }
-
-            // corner points
-            c=grid-1;
-            if( bounds[0][0]==true ) {
-                values_new[0][0]=(1.0/4.0) * (values[1][0] + values[0][1] + values[0][0]  + values[0][0]);
-            }
-
-            if( bounds[0][c]==true ) {
-                values_new[0][c]=(1.0/4.0) * (values[1][c] + values[0][c-1] + values[0][c]  + values[0][c]);
-            }
-
-            if( bounds[c][0]==true ) {
-                values_new[c][0]=(1.0/4.0) * (values[c-1][0] + values[c][1]  + values[c][0]  + values[c][0]);
-            }
-
-            if( bounds[c][c]==true ) {
-                values_new[c][c]=(1.0/4.0) * (values[c-1][c] + values[c][c-1] + values[c][c]  + values[c][c]);
-            }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////
-            for (j=0;j<=grid-1;j++) {
-                        for (i=0;i<=grid-1;i++){
-                            if( bounds[i][j]==true ) {
-                                values[i][j]=values_new[i][j];
-                    }
-                        }
-                }
-        }
-
-        for (i=(grid-1);i>=0;i--){
-                for (j=0;j<=(grid-1);j++) {
-
-                        datafile << i << "	" << j << "	" << values[i][j] << "	   " << "\n";
-                }
-
-                datafile << "\n";
-            }
-
-            datafile.close();
     }
 
-void MainWindow::GAUSS()
-{
-    cout << "gauss" << endl;
 
-
-        int m=0;
-        int i=0;
-        int j=0;
-        int c=0;
-
-        ofstream datafile;
-        datafile.open("Users/Honi/updated/lageneric_data.dat",ios::out);
-
-        for(m=0; m<=(loop-1); m++) {
-                for (j=1; j<=(grid-2); j++) {
-                for (i=1; i<=(grid-2); i++) {
-                            if( bounds[i][j]==true ) {
-
-                                    values[i][j] = (1.0/4.0) * (values[i][j+1] + values[i][j-1] + values[i+1][j] + values[i-1][j]);
-                    }
-                }
-            }
-
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-
-            for (i=1;i<=(grid-2);i++){
-                        j=grid-1;   // upper inner line
-                if( bounds[i][j]==true ) {
-
-                            values[i][j] = (1.0/4.0) * (values[i][j-1] + values[i+1][j] + values[i-1][j] + values[i][j]);
-                        }
-
-                j=0;  // lower inner line
-                if( bounds[i][j]==true ) {
-
-                                values[i][j] = (1.0/4.0) * (values[i][j+1] + values[i+1][j] + values[i-1][j] + values[i][j]);
-                        }
-                }
-
-            for (j=1;j<=(grid-2);j++){
-                    i=grid-1;   // right inner line
-                        if( bounds[i][j]==true ) {
-
-                                values[i][j] = (1.0/4.0) * (values[i][j+1] + values[i][j-1] + values[i-1][j] + values[i][j]);
-                        }
-
-                i=0;  // left inner line
-                        if( bounds[i][j]==true ) {
-
-                                values[i][j] = (1.0/4.0) * (values[i][j+1] + values[i][j-1] + values[i+1][j] + values[i][j]);
-                        }
-                }
-
-            // corner points
-            c=grid-1;
-            if( bounds[0][0]==true ) {
-                values[0][0]=(1.0/4.0) * (values[1][0] + values[0][1] + values[0][0]  + values[0][0]);
-            }
-
-            if( bounds[0][c]==true ) {
-                values[0][c]=(1.0/4.0) * (values[1][c] + values[0][c-1] + values[0][c]  + values[0][c]);
-            }
-
-            if( bounds[c][0]==true ) {
-                values[c][0]=(1.0/4.0) * (values[c-1][0] + values[c][1]  + values[c][0]  + values[c][0]);
-            }
-
-            if( bounds[c][c]==true ) {
-                values[c][c]=(1.0/4.0) * (values[c-1][c] + values[c][c-1] + values[c][c]  + values[c][c]);
-            }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////
-
-    }
-
-            for (i=(grid-1); i>=0; i--) {
-                for (j=0; j<=(grid-1); j++) {
-
-                        datafile << i << "	" << j << "	" << values[i][j] << "	   " << "\n";
-                }
-
-                datafile << "\n";
-            }
-
-            datafile.close();
-    }
-
-void MainWindow::SOR()
-{
-    cout << "sor" << endl;
-
-
-        int m=0;
-        int i=0;
-        int j=0;
-
-        ofstream datafile;
-        datafile.open("Users/Honi/updated/lageneric_data.dat",ios::out);
-
-        for(m=0; m<=(loop-1); m++) {
-                for (j=1; j<=(grid-1); j++) {
-                for (i=1; i<=(grid-1); i++) {
-                            if( bounds[i][j]==true ) {
-
-                                    values[i][j] = ((1-w)*values[i][j]) + ((w/4.0) * (values[i][j+1] + values[i][j-1] + values[i+1][j] + values[i-1][j]));
-                    }
-                }
-            }
-        }
-
-            for (i=(grid-1); i>=0; i--) {
-                for (j=0; j<=(grid-1); j++) {
-
-                        datafile << i << "	" << j << "	" << values[i][j] << "	   " << "\n";
-                }
-
-                datafile << "\n";
-            }
-
-            datafile.close();
-}
-
-void MainWindow::run_code()
-{
-    cout << "run" << endl;
-
-
-    int op;
-
-        grid = resolution->value();
-
-        for(int i=0; i<=grid-1; i++) {
-            for(int j=0; j<=grid-1; j++) {
-
-                bounds[i][j] = true;
-            }
-        }
-
-
-            loop = loops->value();
+        loop = loops->value();
 
 cout << "past grid creation" << endl;
 // would not finish compilation after this point/ does not enter loop
-            if (Jacobi->isChecked() == 1){
-                op = 1;
-                cout << "jackie!"<< endl;
-                JACOBI();
-                cout << "jackie!"<< endl;
-            }
-            else if (Gauss->isChecked() == 1){
-                op = 2;
-                cout << "gauss" << endl;
-                GAUSS();
-                cout << "gauss" << endl;
-            }
-            else if (sor->isChecked() == 1){
-                op = 3;
-                cout << "soar!" << endl;
-                w = relatation->value();
-                SOR();
-                cout << "soar!" << endl;
-            }
-            else {cout << "there is a problem with your code :(" << endl;}
+        if (Jacobi->isChecked() == 1){
+            op = 1;
+            cout << "jackie!"<< endl;
+            JACOBI();
+            cout << "jackie!"<< endl;
+        }
+        else if (Gauss->isChecked() == 1){
+            op = 2;
+            cout << "gauss" << endl;
+            GAUSS();
+            cout << "gauss" << endl;
+        }
+        else if (sor->isChecked() == 1){
+            op = 3;
+            cout << "soar!" << endl;
+            w = relatation->value();
+            SOR();
+            cout << "soar!" << endl;
+        }
+        else {cout << "there is a problem with your code :(" << endl;}
 
 
-            cout << "All done! please run 'laplotter.sh'" << endl;
+        cout << "All done! please run 'laplotter.sh'" << endl;
+        prog->hide();
 
 }
