@@ -5,6 +5,7 @@ using namespace std;
 void MainWindow::SOR()
 {
     cout << "sor" << endl;
+    cout << loop << "   " << grid << endl;
 
 
         int m=0;
@@ -12,8 +13,7 @@ void MainWindow::SOR()
         int j=0;
 
         ofstream datafile;
-        datafile.open("/home/guest/THIS-FILE-HERE-WORKS/lageneric_data.dat",ios::out);
-        prog->setValue(20);
+        datafile.open("../THIS-FILE-HERE-WORKS/lageneric_data.dat",ios::out);
 
         for(m=0; m<=(loop-1); m++) {
                 for (j=1; j<=(grid-1); j++) {
@@ -38,4 +38,6 @@ void MainWindow::SOR()
 
 
             datafile.close();
+            cout << bounds[1][1] << endl;
+            cout << values[1][1] << endl;
 }

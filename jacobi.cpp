@@ -5,6 +5,7 @@ void MainWindow::JACOBI()
 {
 
     cout << "Jacobi" << endl;
+    cout << loop << "   " << grid << endl;
 
             int m=0;
             int i=0;
@@ -12,7 +13,7 @@ void MainWindow::JACOBI()
             int c=0;
 
             ofstream datafile;
-            datafile.open("/home/guest/untitled3/lageneric_data.dat",ios::out);
+            datafile.open("../THIS-FILE-HERE-WORKS/lageneric_data.dat",ios::out);
         for(m=0; m<=(loop-1); m++) {
                 for (j=1;j<=(grid-2);j++) {
                         for (i=1;i<=(grid-2);i++){
@@ -98,5 +99,7 @@ void MainWindow::JACOBI()
             }
 
             datafile.close();
+            cout << bounds[1][1] << endl;
+            cout << values[1][1] << endl;
 
     }

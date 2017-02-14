@@ -47,4 +47,6 @@ void MainWindow::create_line()
                 }
                 //cout << endl;
             }
+            cout << bounds[1][1] << endl;
+            cout << values[1][1] << endl;
 }

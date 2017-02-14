@@ -5,6 +5,7 @@ using namespace std;
 void MainWindow::GAUSS()
 {
     cout << "gauss" << endl;
+    cout << loop << "   " << grid << endl;
 
 
         int m=0;
@@ -13,7 +14,7 @@ void MainWindow::GAUSS()
         int c=0;
 
         ofstream datafile;
-        datafile.open("/home/guest/untitled3/lageneric_data.dat",ios::out);
+        datafile.open("../THIS-FILE-HERE-WORKS/lageneric_data.dat",ios::out);
         cout << datafile.is_open() << endl;
         if (datafile.is_open() == 1) { cout << "EXISTANCE" << endl; } else {cout << "noooooo!" << endl;}
 
@@ -90,5 +91,7 @@ void MainWindow::GAUSS()
             }
 
             datafile.close();
+            cout << bounds[1][1] << endl;
+            cout << values[1][1] << endl;
 
     }

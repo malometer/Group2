@@ -2,6 +2,7 @@
 using namespace std;
 
 void MainWindow::create_circle()
+//void create_circle()
 {
     cout << "create circle" << endl;
 
@@ -13,6 +14,8 @@ void MainWindow::create_circle()
     cy = ycentre->value();
     a = radius->value();
     V0 = V01->value();
+
+    cout << cx  << "    " << cy << "    " << a  << "    " << V0 << endl;
 
     if (hollow->isChecked() ==1) {
         fill = 6;
@@ -64,4 +67,6 @@ void MainWindow::create_circle()
                     }
             }
         }
+        cout << bounds[1][1] << endl;
+        cout << values[1][1] << endl;
 }

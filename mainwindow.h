@@ -14,6 +14,7 @@
 #include <QGraphicsScene>
 #include <QProgressBar>
 #include <QGroupBox>
+#include <QGridLayout>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,6 +26,32 @@
 #include <cmath>
 #include <fstream>
 
+/*
+#include "circle.cpp"
+#include "gauss.cpp"
+#include "jacobi.cpp"
+#include "line.cpp"
+#include "sor.cpp"
+#include "task2.cpp"
+*/
+
+
+extern int grid,loop;
+extern float i2, j2, w;
+extern double values[10000][10000], values_new[10000][10000];
+extern bool bounds[10000][10000];
+extern double closeness, square_dist;
+extern double dist;
+
+/*
+//global varibles
+int grid,loop;
+float i2, j2, w;
+double values[10000][10000], values_new[10000][10000];
+bool bounds[10000][10000];
+double closeness, square_dist;
+double dist;
+*/
 
 namespace Ui {
 class MainWindow;
@@ -47,17 +74,17 @@ private slots:
     void GAUSS();
     void SOR();
     void task2();
+    void image();
+    void wipe();
+    void create_box();
 
 private:
     Ui::MainWindow *ui;
-
-    QPushButton *push;
 
     //buttons
     QPushButton *linear;
     QPushButton *circle;
     QPushButton *complie;
-    QPushButton *plot1;
     QPushButton *reset;
     QPushButton *task22;
     QPushButton *showline;
@@ -85,13 +112,13 @@ private:
     QSlider *displacement;
     QSlider *V02;
 
-// /* task two
+//  task two
     QSlider *a2;
     QSlider *w2;
     QSlider *h2;
     QSlider *d2;
     QSlider *V2;
-//    */
+//
 
     //radiobuttons
     QRadioButton *Jacobi;
@@ -101,16 +128,21 @@ private:
     QRadioButton *vertical;
     QRadioButton *hollow;
     QRadioButton *filled;
+    QRadioButton *boxfill;
+    QRadioButton *boxempty;
 
     //image
     QLabel *plot2;
-    QPixmap *plotone;
-    QGraphicsScene *scene;
-    QPixmap image;
-    QImage *plottwo;
+    QPushButton *showimage;
 
-    //progress
-    QProgressBar *prog;
+    //box
+    QSlider *bx;
+    QSlider *by;
+    QSlider *blength;
+    QSlider *bwidth;
+    QSlider *V3;
+    QPushButton *box;
+
 
 };
 

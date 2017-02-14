@@ -14,13 +14,16 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    ../Archive/circle.cpp \
-    ../Archive/gauss.cpp \
-    ../Archive/jacobi.cpp \
-    ../Archive/line.cpp \
-    ../Archive/sor.cpp \
-    ../Archive/task2.cpp
+    circle.cpp \
+    gauss.cpp \
+    jacobi.cpp \
+    line.cpp \
+    sor.cpp \
+    task2.cpp
 
 HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
+
+DISTFILES += \
+    plot1.jpg

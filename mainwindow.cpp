@@ -4,6 +4,7 @@
 
 using namespace std;
 
+
 int grid,loop;
 float i2, j2, w;
 double values[10000][10000], values_new[10000][10000];
@@ -12,30 +13,27 @@ double closeness, square_dist;
 double dist;
 
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    push = new QPushButton("Push", this);
-    connect(push, SIGNAL(clicked(bool)), this, SLOT(create_line()));
-
 
     //inserting from twoparter
     setWindowTitle("Electrostatic simulation");
 
     //group boxes
-    QGroupBox *initial = new QGroupBox("Grid values", this);
-    QGroupBox *initilisecircle = new QGroupBox("circle", this);
-    QGroupBox *initiliseline = new QGroupBox("lines", this);
-    QGroupBox *tasktwo = new QGroupBox("task 2", this);
+    QGroupBox *initial = new QGroupBox("", this);        //grid values
+    QGroupBox *initilisecircle = new QGroupBox("", this);     //circle
+    QGroupBox *initiliseline = new QGroupBox("", this);        //lines
+    QGroupBox *tasktwo = new QGroupBox("", this);             //task 2
 
     // Create the button, make "this" the parent
     linear = new QPushButton("Create Line", initiliseline);
     circle = new QPushButton("Create Circle", initilisecircle);
     complie = new QPushButton("RUN", this);
-    plot1 = new QPushButton("Plot graph", this);
     reset = new QPushButton("Reset", this);
     task22 = new QPushButton("Task 2", tasktwo);
     showline = new QPushButton("Create a line", this);
@@ -53,14 +51,12 @@ MainWindow::MainWindow(QWidget *parent) :
     V02 = new QSlider(Qt::Horizontal, initiliseline);
     relatation = new QSlider(Qt::Horizontal, initial);
 
-//    /* task two
+        //task two
     a2 = new QSlider(Qt::Horizontal,tasktwo);
     w2 = new QSlider(Qt::Horizontal,tasktwo);
     h2 = new QSlider(Qt::Horizontal,tasktwo);
     d2 = new QSlider(Qt::Horizontal,tasktwo);
     V2 = new QSlider(Qt::Horizontal,tasktwo);
-//    */
-
 
     //create radio buttons
     Jacobi = new QRadioButton("Jacobi", initial);
@@ -71,8 +67,6 @@ MainWindow::MainWindow(QWidget *parent) :
     horizontal = new QRadioButton("horizontal", initiliseline);
     vertical = new QRadioButton("vertical", initiliseline);
 
-    //create progress
-    prog = new QProgressBar(this);      prog->move(70, 470);
 
     //create labels
     QLabel *resl = new QLabel(initial);             resl->setText("Grid size");
@@ -106,12 +100,39 @@ MainWindow::MainWindow(QWidget *parent) :
     QLabel *relmax = new QLabel(initial);           relmax->setText("1");
     QLabel *relmin = new QLabel(initial);           relmin->setText("0");
 
+    //box
+    bx = new QSlider(Qt::Horizontal, tasktwo);
+    by = new QSlider(Qt::Horizontal, tasktwo);
+    blength = new QSlider(Qt::Horizontal, tasktwo);
+    bwidth = new QSlider(Qt::Horizontal, tasktwo);
+    V3 = new QSlider(Qt::Horizontal, tasktwo);
+    box = new QPushButton("create box", this);
+    connect(box, SIGNAL(released()), this, SLOT(create_box()));
+    boxfill = new QRadioButton("filled box", tasktwo);
+    boxempty = new QRadioButton("empty box", tasktwo);
+
+    bx->move(200, 50);
+    by->move(200, 100);
+    blength->move(200, 150);
+    bwidth->move(200, 200);
+    V3->move(200, 250);
+    box->move(200, 300);
+    boxfill->move(210, 340);
+    boxempty->move(210, 380);
+
+    QLabel *bxl = new QLabel(tasktwo);      bxl->setText("xcorner");        bxl->move(150, 50);
+    QLabel *byl = new QLabel(tasktwo);      byl->setText("ycorner");        byl->move(150, 100);
+    QLabel *bll = new QLabel(tasktwo);      bll->setText("length");         bll->move(150, 150);
+    QLabel *bwl = new QLabel(tasktwo);      bwl->setText("width");          bwl->move(150, 200);
+    QLabel *bvl = new QLabel(tasktwo);      bvl->setText("voltage");        bvl->move(150, 250);
+    QLabel *bfl = new QLabel(tasktwo);      bfl->setText("xcorner");        bfl->move(150, 300);
 
     //set Groupboxes
-    initial->move(0,0);             initial->resize(250, 300);
-    initilisecircle->move(250, 0);  initilisecircle->resize(250, 250);      initilisecircle->hide();
-    initiliseline->move(250, 0);  initiliseline->resize(250, 250);        initiliseline->hide();
-    tasktwo->move(250, 0);          tasktwo->resize(250, 250);              tasktwo->hide();
+    initial->move(0,0);             initial->resize(350, 400);
+    initilisecircle->move(370, 0);  initilisecircle->resize(300, 400);      initilisecircle->hide();
+    initiliseline->move(370, 0);    initiliseline->resize(300, 400);        initiliseline->hide();
+    tasktwo->move(370, 0);          tasktwo->resize(300, 400);              tasktwo->hide();
+
 
     //set labels
     resl->move(5, 50);      resl->setWordWrap(true);
@@ -155,15 +176,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     // set size and location of the buttons
-    setGeometry(200, 200, 500, 500);    //of the window
+    //setGeometry(200, 200, 500, 500);    //of the window
     linear->setGeometry(QRect(QPoint(5, 20), QSize(100, 30)));
     circle->move(5,20); circle->resize(110, 30);
-    complie->move(400,470);
-    plot1->move(5, 470);
+    complie->move(600,420);
     task22->move(150, 150);
-    showline->move(5, 400);
-    showcircle->move(105, 400);
-    showtask2->move(205, 400);
+    showline->move(220, 420);
+    showcircle->move(110, 420);
+    showtask2->move(330, 420);
+    reset->move(5, 420);
 
 
     //set postion on sliders
@@ -175,29 +196,29 @@ MainWindow::MainWindow(QWidget *parent) :
     displacement->move(110, 50);  displacement->setRange(1, 499);
     V01->move(110, 150);          V01->setRange(-1, 1);
     V02->move(110, 200);          V02->setRange(-1, 1);
-    relatation->move(170, 250);   relatation->setRange(0, 1);
-//    /* task two
+    relatation->move(170, 250);   relatation->setRange(0, 1);           relatation->hide();
+        //task two
     a2->move(110, 5);
     w2->move(110, 40);
     h2->move(110, 70);
     d2->move(110, 100);
     V2->move(110, 130);
-//    */
 
-    QString chara = "";
-//    chara = initiliseline->isVisible();
-    text->move(150, 0);
-    text->setText(chara);
+    cout << "AAAAAAAAHHHHHHHHH" << endl;
 
-cout << "AAAAAAAAHHHHHHHHH" << endl;
+    //create image
+    showimage = new QPushButton("image", this); showimage->move(500, 420);  showimage->hide();
+    plot2 = new QLabel(this); plot2->hide();
 
     // Connect button signal to appropriate slot
     connect(linear, SIGNAL (released()), this, SLOT (create_line()));
     connect(circle, SIGNAL(released()), this, SLOT (create_circle()));
     connect(complie, SIGNAL(released()), this, SLOT(run_code()));
-    connect(plot1, SIGNAL(pressed()), this, SLOT(plot()));
-    connect(reset, SIGNAL(released()), this, SLOT(clear()));
     connect(task22, SIGNAL(released()), this, SLOT(task2()));
+    connect(reset, SIGNAL(released()), this, SLOT(wipe()));
+
+    connect(showimage, SIGNAL(released()), this, SLOT(image()));
+        connect(sor, SIGNAL(clicked(bool)), relatation, SLOT(show()));
 
     //Hide/show sections
     connect(showcircle, SIGNAL(released()), initilisecircle, SLOT(show()));
@@ -211,6 +232,10 @@ cout << "AAAAAAAAHHHHHHHHH" << endl;
     connect(showtask2, SIGNAL(released()), tasktwo, SLOT(show()));
     connect(showtask2, SIGNAL(released()), initilisecircle, SLOT(hide()));
     connect(showtask2, SIGNAL(released()), initiliseline, SLOT(hide()));
+
+    connect(showimage, SIGNAL(released()), initiliseline, SLOT(hide()));
+    connect(showimage, SIGNAL(released()), initilisecircle, SLOT(hide()));
+    connect(showimage, SIGNAL(released()), tasktwo, SLOT(hide()));
     //end
 
 }
@@ -220,7 +245,35 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::image()
+{
+    //call forth the gnuplot here... please?
+    /*
+    gnuplot << "set terminal postscript colour \n"
+               "set term jpeg\n"
+               "set output 'plot1.jpg'\m"
+               "";
+    */
 
+    //place the graph into the GUI
+
+    //QPixmap pix("/Users/Honi/THIS-FILE-HERE-WORKS/plot1.jpg"); //works
+    //QPixmap pix("../THIS-FILE-HERE-WORKS/plot1.jpg"); //works
+    QPixmap pix("plot1.jpg");   //works when linked (which it is)
+    //pix.setDevicePixelRatio(2);
+    plot2->show();
+    plot2->setPixmap(pix);
+    plot2->setGeometry(-50,15,600,400);
+
+    cout << "inputed image" << endl;
+    showimage->hide();
+    linear->hide();
+    circle->hide();
+    complie->hide();
+    task22->hide();
+
+
+}
 
 void MainWindow::run_code() {
 
@@ -266,6 +319,77 @@ cout << "past grid creation" << endl;
 
 
         cout << "All done! please run 'laplotter.sh'" << endl;
-        prog->hide();
+        showimage->show();
 
 }
+
+void MainWindow::wipe() {
+
+    //undo/reset
+    plot2->hide();
+    task22->show();
+    linear->show();
+    circle->show();
+    complie->show();
+
+    //reset global varibles here, loop through and set everything to zero?
+    /*
+    values[10000][10000] = {};      //everything is null?
+    values_new[10000][10000] = {};  //everything is null?
+    bounds[10000][10000]  = {};     //everythign is null?
+    */
+        //is that good enough?
+}
+
+void MainWindow::create_box()
+{
+    //set position, length, width
+    int xcorner = bx->value();
+    int ycorner = by->value();
+    int length = blength->value();
+    int width = bwidth->value();
+    int filled = 0;
+    int V0 = V3->value();
+    grid = resolution->value();
+    cout << "you are building the box "<< endl;
+
+    for(int j=0; j<=grid-1; j++) {
+        for(int i=0; i<=grid-1; i++) {
+
+                //if( bounds[i][j]==true ) {
+                    //cout << "I'm in, standby" << endl;
+                    if (filled == 1) {
+                if ( i > xcorner && i < xcorner + length ) {
+                    if (j > ycorner && j < ycorner + width) {
+                                cout << "i: " << i << ",  j: " << j << endl;
+                                values[i][j]=V0;
+                                bounds[i][j]=false;
+                        }
+
+                }} else if (filled == 0) {
+                        //cout << "here we go" << endl;
+                        if ( i == xcorner || i == xcorner + length ) {
+                                //cout << "target in my sights" << endl;
+                            if (j > ycorner && j < ycorner + width){
+                                cout << "i: " << i << ",  j: " << j << endl;
+                                values[i][j]=V0;
+                                bounds[i][j]=false;
+                        }
+                    }
+                        if (j == ycorner || j == ycorner + width){
+                            //cout << "do you read?" << endl;
+                            if (i > xcorner && i < xcorner + length){
+                                cout << "i: " << i << ",  j: " << j << endl;
+                                values[i][j]=V0;
+                                bounds[i][j]=false;
+                            }
+                        }
+                }
+        }
+    }
+       // }
+    }
+
+
+
+
