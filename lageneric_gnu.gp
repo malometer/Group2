@@ -1,17 +1,23 @@
-set output "plot1.jpg"
-set term postscript
-set term jpeg
 
+set output "plot1.jpg"
+set term postscript color
+set term jpeg enhanced
+
+set lmargin 0
+set rmargin 0
 
 unset key
-set title "please work, please work... yey"
+set title "Electric Potential of Electric Field"
 set pm3d map
 stats "lageneric_data.dat" using 3 nooutput
 cbmax = (abs(STATS_min) > abs(STATS_max) ? abs(STATS_min) : abs(STATS_max))
 set cbrange[-cbmax:cbmax]
-set palette defined ( -2 "red", -1 "dark-red", 0 "black", 1 "dark-blue", 2 "blue")
+set palette defined ( -4 "dark-red", -3 "red", -2 "orange", -1 "yellow", 0 "white", 1 "cyan", 2 "blue", 3 "dark-blue", 4 "black")
 set size square
-splot "lageneric_data.dat" using 1:2:3 with pm3d
+
 set format x ""
 set format y ""
+
+splot "lageneric_data.dat" using 1:2:3 with pm3d
+
 

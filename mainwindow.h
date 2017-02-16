@@ -14,7 +14,8 @@
 #include <QGraphicsScene>
 #include <QProgressBar>
 #include <QGroupBox>
-#include <QGridLayout>
+#include <QBitArray>
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -26,32 +27,26 @@
 #include <cmath>
 #include <fstream>
 
-/*
-#include "circle.cpp"
-#include "gauss.cpp"
-#include "jacobi.cpp"
-#include "line.cpp"
-#include "sor.cpp"
-#include "task2.cpp"
-*/
+#include <QtGui>
+#include <QtCore>
+#include "mysquare.h"
 
-
+extern int simpleDist;
+extern int simpleVal;
+extern float radialR;
+extern int cX;
+extern int cY;
+extern float radialVal;
 extern int grid,loop;
 extern float i2, j2, w;
 extern double values[10000][10000], values_new[10000][10000];
 extern bool bounds[10000][10000];
 extern double closeness, square_dist;
 extern double dist;
+extern bool HorF;
+extern bool XorY;
+extern double subBench [10000][10000];
 
-/*
-//global varibles
-int grid,loop;
-float i2, j2, w;
-double values[10000][10000], values_new[10000][10000];
-bool bounds[10000][10000];
-double closeness, square_dist;
-double dist;
-*/
 
 namespace Ui {
 class MainWindow;
@@ -62,8 +57,15 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+
+
+
+
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+
+
 
 
 private slots:
@@ -71,79 +73,54 @@ private slots:
     void create_circle();
     void run_code();
     void JACOBI();
-    void GAUSS();
+    void gauss_seidel();
     void SOR();
-    void task2();
-    void image();
-    void wipe();
+
+
+    void multigrid();
+    void gauss_sweep();
+    void correction_sweep();
+    void course_sweep();
+    void res_sweep();
+    void two_grid();
+    bool doCheck();
     void create_box();
 
+    void myPainter();
+
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
+
+   // void on_progressBar_valueChanged(int value);
+
+    void on_pushButton_4_released();
+
+    void on_tab1_clicked();
+
+    void on_tab2_clicked();
+
+    void on_interact_clicked();
+
+    void on_pushButton_5_clicked();
+
+
+    void on_radioS_clicked();
+
+    void on_radioM_clicked();
+
 private:
-    Ui::MainWindow *ui;
 
-    //buttons
-    QPushButton *linear;
-    QPushButton *circle;
-    QPushButton *complie;
-    QPushButton *reset;
-    QPushButton *task22;
-    QPushButton *showline;
-    QPushButton *showcircle;
-    QPushButton *showtask2;
-
-
-    //group boxes
-    QGroupBox *initial;
-    QGroupBox *initilisecircle;
-    QGroupBox *initiliseline;
-    QGroupBox *tasktwo;
-
-    //sliders
-    QSlider *size;
-    QSlider *resolution;
-    QSlider *loops;
-    QSlider *relatation;
-
-    QSlider *xcentre;
-    QSlider *ycentre;
-    QSlider *radius;
-    QSlider *V01;
-
-    QSlider *displacement;
-    QSlider *V02;
-
-//  task two
-    QSlider *a2;
-    QSlider *w2;
-    QSlider *h2;
-    QSlider *d2;
-    QSlider *V2;
-//
-
-    //radiobuttons
-    QRadioButton *Jacobi;
-    QRadioButton *Gauss;
-    QRadioButton *sor;
-    QRadioButton *horizontal;
-    QRadioButton *vertical;
-    QRadioButton *hollow;
-    QRadioButton *filled;
-    QRadioButton *boxfill;
-    QRadioButton *boxempty;
-
-    //image
-    QLabel *plot2;
-    QPushButton *showimage;
-
-    //box
-    QSlider *bx;
-    QSlider *by;
-    QSlider *blength;
-    QSlider *bwidth;
-    QSlider *V3;
-    QPushButton *box;
-
+     Ui::MainWindow *ui;
+    QGraphicsScene *scene;
+    MySquare *square;
 
 };
+
+
 
 #endif // MAINWINDOW_H

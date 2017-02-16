@@ -14,16 +14,25 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    circle.cpp \
-    gauss.cpp \
+    mysquare.cpp \
     jacobi.cpp \
-    line.cpp \
-    sor.cpp \
-    task2.cpp
+    multigrid.cpp \
+    SOR.cpp \
+    gauss_seidel.cpp \
+    create_box.cpp \
+    closeness.cpp \
+    circle_bound.cpp \
+    simple_bound.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    mysquare.h
 
 FORMS    += mainwindow.ui
 
 DISTFILES += \
+    laplotter.sh \
+    lageneric_gnu.gp \
+    test.gnu \
+    test.sh \
+    interact.gp \
     plot1.jpg
