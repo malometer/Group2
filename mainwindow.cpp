@@ -6,6 +6,7 @@
 #include <QProgressBar>
 #include <unistd.h>
 #include <QProcess>
+#include <QCoreApplication>
 
 using namespace std;
 
@@ -17,6 +18,8 @@ float radialR=0;
 int cX = 0;
 int cY = 0;
 float radialVal=0;
+int widthVal = 0;
+int lengthVal = 0;
 int grid,loop;
 float i2, j2, w;
 double values[10000][10000], values_new[10000][10000];
@@ -25,7 +28,6 @@ double closeness, square_dist;
 double dist;
 bool HorF;
 bool XorY;
-double subBench [10000][10000];
 
 
 
@@ -38,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     scene = new QGraphicsScene(this);
-    ui->graphicsView->setScene(scene);
+    //ui->graphicsView->setScene(scene);
 
     square = new MySquare();
     scene->addItem(square);
@@ -47,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tab2->hide();
     ui->interact->hide();
 
-     ui->gavsBar->setValue(0);
+
 
 
 }
@@ -119,6 +121,8 @@ void MainWindow::on_pushButton_2_clicked()
          }
     }
 
+
+
    ui->gavsLabel->resize(grid,grid);
    ui->gavsLabel->setPixmap(pix);
 
@@ -140,7 +144,22 @@ void MainWindow::on_pushButton_clicked()
    simpleVal = ui->simple_val->text().toInt();
 
    if(ui->radioY->isChecked()){
-       XorY = true;
+       XorY = true;    cX = ui->cX->text().toInt();
+       cY = ui->cY->text().toInt();
+       radialR = ui->radiusBox->text().toInt();
+       radialVal = ui->rV0_Box->text().toInt();
+
+       if(ui->radioFilled->isChecked()){
+           HorF = true;
+       } else if(ui->radioHollow->isChecked()){
+           HorF = false;
+       }
+
+
+
+       create_circle();
+       myPainter();
+
    } else if(ui->radioX->isChecked()){
        XorY = false;
    }
@@ -180,19 +199,24 @@ void MainWindow::on_pushButton_3_clicked()
 void MainWindow::on_pushButton_4_clicked()
 {
 
+    progressBar();
+
+
+
     if (ui->radioJ->isChecked()) {
         JACOBI(); ui->interact->hide();
         usleep(5000000);
-        QPixmap plot("../LinuxUiUpdate/plot1.jpg");
+        QPixmap plot("plot1.jpg");
         ui->gavsLabel->resize(grid,grid);
         ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         ui->gavsLabel->setPixmap(plot);
         cout << "should have plot" << endl;
     } else if (ui->radioG->isChecked()) {
         GAUSS();
+        QCoreApplication::processEvents();
         usleep(5000000);
-        system("/Users/Honi/Documents/GUIs/LinuxUiUpdate/laplotter.sh");
-        QPixmap plot("/Users/Honi/Documents/GUIs/LinuxUiUpdate/plot1.jpg");
+        QCoreApplication::processEvents();
+        QPixmap plot("plot1.jpg");
         ui->gavsLabel->resize(grid,grid);
         ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         ui->gavsLabel->setPixmap(plot);
@@ -201,16 +225,17 @@ void MainWindow::on_pushButton_4_clicked()
     } else if (ui->radioS->isChecked()) {
         SOR();
         usleep(5000000);
-        QPixmap plot("../LinuxUiUpdate/plot1.jpg");
+        QPixmap plot("plot1.jpg");
         ui->gavsLabel->resize(grid,grid);
         ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         ui->gavsLabel->setPixmap(plot);
         cout << "should have plot" << endl;
     } else {
         GAUSS();
-        system("/Users/Honi/Documents/GUIs/LinuxUiUpdate/laplotter.sh");
+        QCoreApplication::processEvents();
         usleep(5000000);
-        QPixmap plot("../LinuxUiUpdate/plot1.jpg");
+        QCoreApplication::processEvents();
+        QPixmap plot("plot1.jpg");
         ui->gavsLabel->resize(grid,grid);
         ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         ui->gavsLabel->setPixmap(plot);
@@ -219,6 +244,7 @@ void MainWindow::on_pushButton_4_clicked()
 
     ui->tab1->show();
     ui->tab2->show();
+    stopBar();
 }
 
 void MainWindow::myPainter() {
@@ -238,7 +264,7 @@ void MainWindow::myPainter() {
 
     for (int i = 0; i < grid; i++) {
         for(int j=0; j < grid; j++) {
-                painter.drawPoint(i,j);
+                painter.drawPoint(grid,grid);
 
          }
     }
@@ -267,7 +293,7 @@ void MainWindow::myPainter() {
                         pen.setColor(myPenColor);
                         painter.setPen(pen);
                     }
-                painter.drawPoint(i,j);
+                painter.drawPoint(i,grid-j);
 
             }
          }
@@ -279,9 +305,25 @@ void MainWindow::myPainter() {
 
 }
 
+
+
+
+void MainWindow::progressBar()
+{
+    ui->gavsBar->setMinimum(0);
+    ui->gavsBar->setMaximum(0);
+}
+
+void MainWindow::stopBar()
+{
+    ui->gavsBar->setMinimum(0);
+    ui->gavsBar->setMaximum(100);
+    ui->gavsBar->setValue(24);
+}
+
 void MainWindow::on_tab1_clicked()
 {
-    QPixmap plot("/Users/Honi/Documents/GUIs/LinuxUiUpdate/plot1.jpg");
+    QPixmap plot("plot1.jpg");
     ui->gavsLabel->resize(grid,grid);
     ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->gavsLabel->setPixmap(plot);
@@ -291,7 +333,7 @@ void MainWindow::on_tab1_clicked()
 
 void MainWindow::on_tab2_clicked()
 {
-    QPixmap plot("/Users/Honi/Documents/GUIs/LinuxUiUpdtae/contour.jpg");
+    QPixmap plot("contour.jpg");
     ui->gavsLabel->resize(grid,grid);
     ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->gavsLabel->setPixmap(plot);
@@ -302,12 +344,33 @@ void MainWindow::on_tab2_clicked()
 
 void MainWindow::on_interact_clicked()
 {
-     QProcess::startDetached("../LinuxUiUpdate/test.sh");
+     QProcess::startDetached("./test.sh");
      cout << "should interact" << endl;
 }
 
-void MainWindow::on_pushButton_5_clicked()
+
+
+void MainWindow::on_recButoon_clicked()
 {
+
+    cX = ui->rX->text().toInt();
+    cY = ui->rY->text().toInt();
+
+    lengthVal = ui->length->text().toInt();
+    widthVal = ui->width->text().toInt();
+
+    radialVal = ui->recV0->text().toInt();
+
+    if(ui->radioFilled_2->isChecked()){
+        HorF = true;
+    } else if(ui->radioHollow_2->isChecked()){
+        HorF = false;
+    }
+
+
+
     create_box();
     myPainter();
+
+
 }

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1433</width>
+    <width>1009</width>
     <height>825</height>
    </rect>
   </property>
@@ -20,7 +20,7 @@
    <widget class="Line" name="line">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>480</x>
       <y>0</y>
       <width>20</width>
       <height>861</height>
@@ -33,7 +33,7 @@
    <widget class="Line" name="line_2">
     <property name="geometry">
      <rect>
-      <x>-50</x>
+      <x>10</x>
       <y>260</y>
       <width>1431</width>
       <height>20</height>
@@ -63,32 +63,6 @@
      <string>Simple Bound</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioY">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>330</y>
-      <width>110</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Y parallel</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioX">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>370</y>
-      <width>110</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>X parallel</string>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="simple_axis">
     <property name="geometry">
      <rect>
@@ -112,8 +86,8 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>430</y>
+      <x>390</x>
+      <y>460</y>
       <width>95</width>
       <height>31</height>
      </rect>
@@ -191,7 +165,7 @@
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>230</x>
       <y>230</y>
       <width>131</width>
       <height>31</height>
@@ -204,8 +178,8 @@
    <widget class="QLabel" name="gavsLabel">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>280</y>
+      <x>500</x>
+      <y>290</y>
       <width>481</width>
       <height>241</height>
      </rect>
@@ -243,8 +217,8 @@
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>10</y>
+      <x>10</x>
+      <y>520</y>
       <width>101</width>
       <height>21</height>
      </rect>
@@ -263,8 +237,8 @@
    <widget class="QLineEdit" name="cX">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>50</y>
+      <x>100</x>
+      <y>560</y>
       <width>41</width>
       <height>31</height>
      </rect>
@@ -273,8 +247,8 @@
    <widget class="QLineEdit" name="cY">
     <property name="geometry">
      <rect>
-      <x>630</x>
-      <y>50</y>
+      <x>180</x>
+      <y>560</y>
       <width>41</width>
       <height>31</height>
      </rect>
@@ -283,8 +257,8 @@
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>50</y>
+      <x>80</x>
+      <y>560</y>
       <width>21</width>
       <height>21</height>
      </rect>
@@ -296,8 +270,8 @@
    <widget class="QLabel" name="label_9">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>50</y>
+      <x>160</x>
+      <y>560</y>
       <width>21</width>
       <height>21</height>
      </rect>
@@ -309,8 +283,8 @@
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>50</y>
+      <x>10</x>
+      <y>560</y>
       <width>66</width>
       <height>21</height>
      </rect>
@@ -322,8 +296,8 @@
    <widget class="QLineEdit" name="radiusBox">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>120</y>
+      <x>90</x>
+      <y>630</y>
       <width>111</width>
       <height>33</height>
      </rect>
@@ -332,8 +306,8 @@
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>120</y>
+      <x>20</x>
+      <y>630</y>
       <width>51</width>
       <height>21</height>
      </rect>
@@ -345,8 +319,8 @@
    <widget class="QLabel" name="label_12">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>180</y>
+      <x>20</x>
+      <y>690</y>
       <width>21</width>
       <height>21</height>
      </rect>
@@ -358,8 +332,8 @@
    <widget class="QLineEdit" name="rV0_Box">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>180</y>
+      <x>90</x>
+      <y>690</y>
       <width>111</width>
       <height>33</height>
      </rect>
@@ -368,8 +342,8 @@
    <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>180</y>
+      <x>390</x>
+      <y>730</y>
       <width>95</width>
       <height>31</height>
      </rect>
@@ -381,7 +355,7 @@
    <widget class="QPushButton" name="pushButton_4">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>390</x>
       <y>230</y>
       <width>95</width>
       <height>31</height>
@@ -400,8 +374,8 @@
    <widget class="Line" name="line_3">
     <property name="geometry">
      <rect>
-      <x>780</x>
-      <y>-30</y>
+      <x>1000</x>
+      <y>0</y>
       <width>20</width>
       <height>541</height>
      </rect>
@@ -410,99 +384,11 @@
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioJ">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>40</y>
-      <width>110</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Jacobi</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioG">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>80</y>
-      <width>110</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Gauss-Seidel</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioS">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>120</y>
-      <width>110</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>SOR</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioM">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>160</y>
-      <width>110</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Multigrid</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioHollow">
-    <property name="geometry">
-     <rect>
-      <x>700</x>
-      <y>50</y>
-      <width>110</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Hollow</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioFilled">
-    <property name="geometry">
-     <rect>
-      <x>700</x>
-      <y>90</y>
-      <width>110</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Filled</string>
-    </property>
-   </widget>
-   <widget class="QGraphicsView" name="graphicsView">
-    <property name="geometry">
-     <rect>
-      <x>-30</x>
-      <y>510</y>
-      <width>481</width>
-      <height>261</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QToolButton" name="tab1">
     <property name="geometry">
      <rect>
       <x>710</x>
-      <y>240</y>
+      <y>730</y>
       <width>31</width>
       <height>29</height>
      </rect>
@@ -515,7 +401,7 @@
     <property name="geometry">
      <rect>
       <x>740</x>
-      <y>240</y>
+      <y>730</y>
       <width>31</width>
       <height>29</height>
      </rect>
@@ -529,7 +415,7 @@
      <rect>
       <x>7</x>
       <y>230</y>
-      <width>161</width>
+      <width>211</width>
       <height>31</height>
      </rect>
     </property>
@@ -543,7 +429,7 @@
    <widget class="Line" name="line_4">
     <property name="geometry">
      <rect>
-      <x>-40</x>
+      <x>0</x>
       <y>500</y>
       <width>491</width>
       <height>20</height>
@@ -556,7 +442,7 @@
    <widget class="QPushButton" name="interact">
     <property name="geometry">
      <rect>
-      <x>930</x>
+      <x>910</x>
       <y>270</y>
       <width>95</width>
       <height>31</height>
@@ -566,102 +452,343 @@
      <string>Interact</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinBox">
+   <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>140</y>
-      <width>47</width>
-      <height>24</height>
+      <x>260</x>
+      <y>30</y>
+      <width>191</width>
+      <height>171</height>
      </rect>
     </property>
+    <widget class="QRadioButton" name="radioM">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>130</y>
+       <width>110</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Multigrid</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioG">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>50</y>
+       <width>110</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Gauss-Seidel</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioJ">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>10</y>
+       <width>110</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Jacobi</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioS">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>90</y>
+       <width>110</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>SOR</string>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>-10</y>
+       <width>171</width>
+       <height>181</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <strikeout>false</strikeout>
+       <kerning>true</kerning>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <zorder>frame</zorder>
+    <zorder>radioM</zorder>
+    <zorder>radioG</zorder>
+    <zorder>radioJ</zorder>
+    <zorder>radioS</zorder>
    </widget>
-   <widget class="QLineEdit" name="V3">
+   <widget class="QWidget" name="widget_2" native="true">
     <property name="geometry">
      <rect>
-      <x>880</x>
-      <y>220</y>
-      <width>111</width>
-      <height>33</height>
+      <x>290</x>
+      <y>320</y>
+      <width>120</width>
+      <height>80</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QLineEdit" name="by">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>50</y>
-      <width>41</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_16">
-    <property name="geometry">
-     <rect>
-      <x>810</x>
-      <y>120</y>
-      <width>51</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>length:</string>
-    </property>
+    <widget class="QRadioButton" name="radioX">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>110</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>X parallel</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioY">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>110</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Y parallel</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="widget_3" native="true">
     <property name="geometry">
      <rect>
-      <x>1030</x>
-      <y>40</y>
-      <width>141</width>
-      <height>91</height>
+      <x>290</x>
+      <y>560</y>
+      <width>151</width>
+      <height>111</height>
      </rect>
     </property>
-    <widget class="QRadioButton" name="radioFilled_5">
+    <widget class="QRadioButton" name="radioFilled">
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>20</y>
-       <width>102</width>
-       <height>20</height>
+       <y>60</y>
+       <width>110</width>
+       <height>26</height>
       </rect>
      </property>
      <property name="text">
       <string>Filled</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioHollow_5">
+    <widget class="QRadioButton" name="radioHollow">
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>50</y>
-       <width>102</width>
-       <height>20</height>
+       <y>20</y>
+       <width>110</width>
+       <height>26</height>
       </rect>
      </property>
      <property name="text">
       <string>Hollow</string>
      </property>
     </widget>
+    <widget class="QFrame" name="frame_3">
+     <property name="geometry">
+      <rect>
+       <x>-1</x>
+       <y>10</y>
+       <width>141</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <zorder>frame_3</zorder>
+    <zorder>radioFilled</zorder>
+    <zorder>radioHollow</zorder>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QFrame" name="frame_2">
     <property name="geometry">
      <rect>
-      <x>1010</x>
-      <y>220</y>
-      <width>95</width>
-      <height>31</height>
+      <x>280</x>
+      <y>310</y>
+      <width>141</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_13">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>210</y>
+      <width>21</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>Add</string>
+     <string>V0:</string>
     </property>
+   </widget>
+   <widget class="QLabel" name="label_14">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>50</y>
+      <width>21</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Y:</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget_4" native="true">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>50</y>
+      <width>151</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <widget class="QRadioButton" name="radioFilled_2">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>60</y>
+       <width>110</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Filled</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioHollow_2">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>20</y>
+       <width>110</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Hollow</string>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_4">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>151</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <zorder>frame_4</zorder>
+    <zorder>radioFilled_2</zorder>
+    <zorder>radioHollow_2</zorder>
    </widget>
    <widget class="QLabel" name="label_15">
     <property name="geometry">
      <rect>
-      <x>800</x>
+      <x>580</x>
+      <y>50</y>
+      <width>21</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>X:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_16">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>50</y>
+      <width>66</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Origin</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="rX">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>50</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="length">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>120</y>
+      <width>111</width>
+      <height>33</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="rY">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>50</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_17">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
       <y>10</y>
       <width>141</width>
       <height>21</height>
@@ -678,106 +805,72 @@
      <string>Rectangular Bound</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_14">
+   <widget class="QPushButton" name="recButoon">
     <property name="geometry">
      <rect>
-      <x>800</x>
-      <y>50</y>
-      <width>66</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Corner:</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="bx">
-    <property name="geometry">
-     <rect>
-      <x>890</x>
-      <y>50</y>
-      <width>41</width>
+      <x>910</x>
+      <y>240</y>
+      <width>95</width>
       <height>31</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QLabel" name="label_13">
-    <property name="geometry">
-     <rect>
-      <x>810</x>
-      <y>220</y>
-      <width>21</width>
-      <height>21</height>
-     </rect>
-    </property>
     <property name="text">
-     <string>V0:</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="blength">
-    <property name="geometry">
-     <rect>
-      <x>880</x>
-      <y>120</y>
-      <width>111</width>
-      <height>33</height>
-     </rect>
+     <string>Add</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_18">
     <property name="geometry">
      <rect>
-      <x>950</x>
-      <y>50</y>
-      <width>21</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Y:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_19">
-    <property name="geometry">
-     <rect>
-      <x>810</x>
-      <y>170</y>
+      <x>520</x>
+      <y>120</y>
       <width>51</width>
       <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>width:</string>
+     <string>length:</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="bwidth">
+   <widget class="QLineEdit" name="recV0">
     <property name="geometry">
      <rect>
-      <x>880</x>
-      <y>170</y>
+      <x>590</x>
+      <y>210</y>
       <width>111</width>
       <height>33</height>
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="label_17">
+   <widget class="QLineEdit" name="width">
     <property name="geometry">
      <rect>
-      <x>870</x>
-      <y>50</y>
-      <width>21</width>
+      <x>590</x>
+      <y>160</y>
+      <width>111</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_19">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>160</y>
+      <width>51</width>
       <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>X:</string>
+     <string>height:</string>
     </property>
    </widget>
+   <zorder>frame_2</zorder>
    <zorder>line</zorder>
    <zorder>line_2</zorder>
    <zorder>label</zorder>
-   <zorder>radioY</zorder>
-   <zorder>radioX</zorder>
    <zorder>simple_axis</zorder>
    <zorder>simple_val</zorder>
    <zorder>pushButton</zorder>
@@ -787,6 +880,7 @@
    <zorder>label_3</zorder>
    <zorder>label_4</zorder>
    <zorder>pushButton_2</zorder>
+   <zorder>gavsLabel</zorder>
    <zorder>label_5</zorder>
    <zorder>label_6</zorder>
    <zorder>label_7</zorder>
@@ -802,50 +896,38 @@
    <zorder>pushButton_3</zorder>
    <zorder>pushButton_4</zorder>
    <zorder>line_3</zorder>
-   <zorder>radioJ</zorder>
-   <zorder>radioG</zorder>
-   <zorder>radioS</zorder>
-   <zorder>radioM</zorder>
-   <zorder>radioHollow</zorder>
-   <zorder>radioFilled</zorder>
-   <zorder>graphicsView</zorder>
    <zorder>tab1</zorder>
    <zorder>tab2</zorder>
    <zorder>gavsBar</zorder>
    <zorder>line_4</zorder>
    <zorder>interact</zorder>
-   <zorder>spinBox</zorder>
-   <zorder>V3</zorder>
-   <zorder>by</zorder>
-   <zorder>label_16</zorder>
+   <zorder>groupBox</zorder>
+   <zorder>widget_2</zorder>
    <zorder>widget_3</zorder>
-   <zorder>pushButton_5</zorder>
-   <zorder>label_15</zorder>
-   <zorder>label_14</zorder>
-   <zorder>bx</zorder>
    <zorder>label_13</zorder>
-   <zorder>blength</zorder>
-   <zorder>label_18</zorder>
-   <zorder>label_19</zorder>
-   <zorder>bwidth</zorder>
+   <zorder>label_14</zorder>
+   <zorder>widget_4</zorder>
+   <zorder>label_15</zorder>
+   <zorder>label_16</zorder>
+   <zorder>rX</zorder>
+   <zorder>length</zorder>
+   <zorder>rY</zorder>
    <zorder>label_17</zorder>
-   <zorder>gavsLabel</zorder>
+   <zorder>recButoon</zorder>
+   <zorder>label_18</zorder>
+   <zorder>recV0</zorder>
+   <zorder>width</zorder>
+   <zorder>label_19</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1433</width>
-     <height>22</height>
+     <width>1009</width>
+     <height>27</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuES">
-    <property name="title">
-     <string>ES</string>
-    </property>
-   </widget>
-   <addaction name="menuES"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">

@@ -12,17 +12,25 @@ TARGET = untitled3
 TEMPLATE = app
 
 
+#SOURCES += main.cpp\
+#        mainwindow.cpp \
+ #   ../Archive/circle.cpp \
+ #   ../Archive/gauss.cpp \
+ #   ../Archive/jacobi.cpp \
+ #   ../Archive/line.cpp \
+#    ../Archive/sor.cpp \
+#    ../Archive/task2.cpp \
+#    mysquare.cpp
+
 SOURCES += main.cpp\
         mainwindow.cpp \
-    mysquare.cpp \
-    multigrid.cpp \
-    create_box.cpp \
-    circle_bound.cpp \
-    simple_bound.cpp \
+    circle.cpp \
+    gauss.cpp \
     jacobi.cpp \
-    SOR.cpp \
-    gauss_seidel.cpp \
-    closeness.cpp
+    line.cpp \
+    sor.cpp \
+    mysquare.cpp \
+    create_box.cpp
 
 HEADERS  += mainwindow.h \
     mysquare.h
@@ -30,11 +38,4 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui
 
 DISTFILES += \
-    laplotter.sh \
-    lageneric_gnu.gp \
-    test.gnu \
-    test.sh \
-    interact.gp \
-    lageneric_data.dat \
-    contour.jpg \
-    plot1_copy.jpg
+    test.gnu

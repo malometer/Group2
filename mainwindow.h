@@ -31,22 +31,22 @@
 #include <QtCore>
 #include "mysquare.h"
 
-
-extern int simpleDist;
-extern int simpleVal;
-extern float radialR;
-extern int cX;
-extern int cY;
-extern float radialVal;
 extern int grid,loop;
 extern float i2, j2, w;
 extern double values[10000][10000], values_new[10000][10000];
 extern bool bounds[10000][10000];
 extern double closeness, square_dist;
 extern double dist;
+extern int simpleDist;
+extern int simpleVal;
+extern float radialR;
+extern int cX ;
+extern int cY;
+extern float radialVal;
 extern bool HorF;
 extern bool XorY;
-extern double subBench [10000][10000];
+extern int widthVal;
+extern int lengthVal;
 
 
 namespace Ui {
@@ -62,30 +62,24 @@ public:
 
 
 
+
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-
+     void progressBar();
+     void stopBar();
 
 
 
 private slots:
     void create_line();
     void create_circle();
+    void create_box();
     void run_code();
     void JACOBI();
     void GAUSS();
     void SOR();
 
-    void multigrid();
-    void gauss_sweep();
-    void correction_sweep();
-    void course_sweep();
-    void res_sweep();
-    void two_grid();
-    bool doCheck();
-    void create_box();
-//    void sub_Bench();
 
     void myPainter();
 
@@ -97,17 +91,19 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+
+
     void on_tab1_clicked();
 
     void on_tab2_clicked();
 
     void on_interact_clicked();
 
-    void on_pushButton_5_clicked();
+    void on_recButoon_clicked();
 
 private:
 
-     Ui::MainWindow *ui;
+    Ui::MainWindow *ui;
     QGraphicsScene *scene;
     MySquare *square;
 
