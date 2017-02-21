@@ -6,6 +6,7 @@
 #include <QProgressBar>
 #include <unistd.h>
 #include <QProcess>
+#include <QPixmap>
 #include <QCoreApplication>
 
 using namespace std;
@@ -28,6 +29,10 @@ double closeness, square_dist;
 double dist;
 bool HorF;
 bool XorY;
+float digm, digc, digval, digval2;
+int dix_1, dix_2, diy_1, diy_2;
+float quad_a, quad_b, quad_c, quad_v0;
+
 
 
 
@@ -39,6 +44,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    setWindowTitle("Electrostatic Boundaries");
+
     scene = new QGraphicsScene(this);
     //ui->graphicsView->setScene(scene);
 
@@ -48,9 +55,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tab1->hide();
     ui->tab2->hide();
     ui->interact->hide();
-
-
-
 
 }
 
@@ -104,6 +108,11 @@ void MainWindow::on_pushButton_2_clicked()
         }
         }
 
+    ui->origin->setText("0");
+    ui->maxY->setText(ui->size->text());
+    ui->maxX->setText(ui->size->text());
+
+
    // QImage image(grid,grid,QImage::Format_RGB32);
 
     QPixmap pix(grid,grid);
@@ -122,16 +131,10 @@ void MainWindow::on_pushButton_2_clicked()
     }
 
 
-
-   ui->gavsLabel->resize(grid,grid);
+   ui->gavsLabel->resize(500,500);
+   ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+   ui->gavsLabel->setScaledContents(true);
    ui->gavsLabel->setPixmap(pix);
-
-
-
-
-
-
-
 
 
 }
@@ -207,39 +210,39 @@ void MainWindow::on_pushButton_4_clicked()
         JACOBI(); ui->interact->hide();
         usleep(5000000);
         QPixmap plot("plot1.jpg");
-        ui->gavsLabel->resize(grid,grid);
+        ui->gavsLabel->resize(500,500);
+         ui->gavsLabel->setScaledContents(false);
         ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         ui->gavsLabel->setPixmap(plot);
-        cout << "should have plot" << endl;
     } else if (ui->radioG->isChecked()) {
         GAUSS();
         QCoreApplication::processEvents();
         usleep(5000000);
         QCoreApplication::processEvents();
         QPixmap plot("plot1.jpg");
-        ui->gavsLabel->resize(grid,grid);
+        ui->gavsLabel->resize(500,500);
+         ui->gavsLabel->setScaledContents(false);
         ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         ui->gavsLabel->setPixmap(plot);
-        cout << "should have plot" << endl;
 
     } else if (ui->radioS->isChecked()) {
         SOR();
         usleep(5000000);
         QPixmap plot("plot1.jpg");
-        ui->gavsLabel->resize(grid,grid);
+        ui->gavsLabel->resize(500,500);
+         ui->gavsLabel->setScaledContents(false);
         ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         ui->gavsLabel->setPixmap(plot);
-        cout << "should have plot" << endl;
     } else {
         GAUSS();
         QCoreApplication::processEvents();
         usleep(5000000);
         QCoreApplication::processEvents();
         QPixmap plot("plot1.jpg");
-        ui->gavsLabel->resize(grid,grid);
+        ui->gavsLabel->resize(500,500);
+         ui->gavsLabel->setScaledContents(false);
         ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         ui->gavsLabel->setPixmap(plot);
-        cout << "should have plot" << endl;
     }
 
     ui->tab1->show();
@@ -299,7 +302,9 @@ void MainWindow::myPainter() {
          }
     }
 
-   ui->gavsLabel->resize(grid,grid);
+   ui->gavsLabel->resize(500,500);
+   ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+   ui->gavsLabel->setScaledContents(true);
    ui->gavsLabel->setPixmap(pix);
    ui->interact->hide();
 
@@ -324,28 +329,26 @@ void MainWindow::stopBar()
 void MainWindow::on_tab1_clicked()
 {
     QPixmap plot("plot1.jpg");
-    ui->gavsLabel->resize(grid,grid);
+    ui->gavsLabel->resize(500,500);
     ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->gavsLabel->setPixmap(plot);
-    cout << "should have plot" << endl;
     ui->interact->hide();
 }
 
 void MainWindow::on_tab2_clicked()
 {
     QPixmap plot("contour.jpg");
-    ui->gavsLabel->resize(grid,grid);
+    ui->gavsLabel->resize(500,500);
     ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->gavsLabel->setPixmap(plot);
-    cout << "should have plot" << endl;
-     ui->interact->show();
+    ui->interact->show();
 
 }
 
 void MainWindow::on_interact_clicked()
 {
      QProcess::startDetached("./test.sh");
-     cout << "should interact" << endl;
+
 }
 
 
@@ -373,4 +376,41 @@ void MainWindow::on_recButoon_clicked()
     myPainter();
 
 
+}
+
+void MainWindow::on_digButton_clicked()
+{
+    digm = ui->dm->text().toFloat();
+    digc = ui->dc->text().toFloat();
+    digval = ui->digV0->text().toFloat();
+    grid = ui->size->text().toFloat();
+    cout << "y = " << digm << "x + " << digc << endl;
+    create_diagonal1();
+    myPainter();
+}
+
+void MainWindow::on_digButton_2_clicked()
+{
+    dix_1 = ui->dx_2->text().toInt();
+    dix_2 = ui->dx_3->text().toInt();
+    diy_1 = ui->dy_1->text().toInt();
+    diy_2 = ui->dy_2->text().toInt();
+    grid = ui->size->text().toFloat();
+    digval2 = ui->digV0_2->text().toFloat();
+    cout << diy_2 << " - " << diy_1 << " = m( " << dix_2 << " - " << dix_1 << " )" << endl;
+
+    create_diagonal2();
+    myPainter();
+
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    quad_a = ui->quadA->text().toFloat();
+    quad_b = ui->quadB->text().toFloat();
+    quad_c = ui->quadC->text().toFloat();
+    quad_v0 = ui->quadV0->text().toFloat();
+
+    create_diagonal_quad();
+    myPainter();
 }

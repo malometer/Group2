@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     line.cpp \
     sor.cpp \
     mysquare.cpp \
-    create_box.cpp
+    create_box.cpp \
+    diagonal.cpp
 
 HEADERS  += mainwindow.h \
     mysquare.h

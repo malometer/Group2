@@ -47,6 +47,9 @@ extern bool HorF;
 extern bool XorY;
 extern int widthVal;
 extern int lengthVal;
+extern float digm, digc, digval, digval2;
+extern int dix_1, dix_2, diy_1, diy_2;
+extern float quad_a, quad_b, quad_c, quad_v0;
 
 
 namespace Ui {
@@ -79,6 +82,9 @@ private slots:
     void JACOBI();
     void GAUSS();
     void SOR();
+    void create_diagonal1();
+    void create_diagonal2();
+    void create_diagonal_quad();
 
 
     void myPainter();
@@ -91,8 +97,6 @@ private slots:
 
     void on_pushButton_4_clicked();
 
-
-
     void on_tab1_clicked();
 
     void on_tab2_clicked();
@@ -100,6 +104,12 @@ private slots:
     void on_interact_clicked();
 
     void on_recButoon_clicked();
+
+    void on_digButton_clicked();
+
+    void on_digButton_2_clicked();
+
+    void on_pushButton_5_clicked();
 
 private:
 

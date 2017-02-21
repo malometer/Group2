@@ -56,7 +56,8 @@ SOURCES       = main.cpp \
 		line.cpp \
 		sor.cpp \
 		mysquare.cpp \
-		create_box.cpp moc_mainwindow.cpp
+		create_box.cpp \
+		diagonal.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		circle.o \
@@ -66,6 +67,7 @@ OBJECTS       = main.o \
 		sor.o \
 		mysquare.o \
 		create_box.o \
+		diagonal.o \
 		moc_mainwindow.o
 DIST          = test.gnu \
 		/usr/lib64/qt5/mkspecs/features/spec_pre.prf \
@@ -135,7 +137,8 @@ DIST          = test.gnu \
 		line.cpp \
 		sor.cpp \
 		mysquare.cpp \
-		create_box.cpp
+		create_box.cpp \
+		diagonal.cpp
 QMAKE_TARGET  = untitled3
 DESTDIR       = 
 TARGET        = untitled3
@@ -288,7 +291,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib64/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.h mysquare.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp circle.cpp gauss.cpp jacobi.cpp line.cpp sor.cpp mysquare.cpp create_box.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp mainwindow.cpp circle.cpp gauss.cpp jacobi.cpp line.cpp sor.cpp mysquare.cpp create_box.cpp diagonal.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
 
@@ -383,6 +386,10 @@ create_box.o: create_box.cpp mainwindow.h \
 		mysquare.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o create_box.o create_box.cpp
+
+diagonal.o: diagonal.cpp mainwindow.h \
+		mysquare.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o diagonal.o diagonal.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

@@ -11,7 +11,7 @@ void MainWindow::SOR()
         int m=0;
         int i=0;
         int j=0;
-        float w = 1.6;
+        int w = 1.6;
         int p =0.99999;
         int c;
 
