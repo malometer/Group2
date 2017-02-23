@@ -13,7 +13,7 @@ void MainWindow::JACOBI()
             int c=0;
 
             ofstream datafile;
-            datafile.open("lageneric_data.dat",ios::out);
+            datafile.open("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/lageneric_data.dat",ios::out);
 
 
             for(m=0; m<=(loop-1); m++) {
@@ -104,6 +104,6 @@ void MainWindow::JACOBI()
 
             datafile.close();
 
-            QProcess::startDetached("./laplotter.sh");
+            QProcess::startDetached("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/laplotter.sh");
 
     }

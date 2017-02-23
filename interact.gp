@@ -29,5 +29,5 @@ set contour base
 set cntrparam levels incremental -1, 0.1, 1 
 unset clabel
 
-splot "/home/guest/Desktop/friday/lageneric_data.dat" using 1:2:3 with lines pale title "analytical solution"
+splot "/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/lageneric_data.dat" using 1:2:3 with lines pale title "analytical solution"
 

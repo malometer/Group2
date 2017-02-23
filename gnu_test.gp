@@ -1,4 +1,4 @@
-set output "contour.jpg"
+set output "/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/contour.jpg"
 #set term gif animate
 set term jpeg
 set key opaque
@@ -31,11 +31,11 @@ set contour base
 set cntrparam levels incremental -1, 0.1, 1 
 unset clabel
 
-splot "lageneric_data.dat" using 1:2:3 with lines pale title "analytical solution"
+splot "/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/lageneric_data.dat" using 1:2:3 with lines pale title "analytical solution"
 #lc rgb "dark-grey" 
 
 #set title "test"
 #set format x ""
 #set format y ""
 #set pm3d map
-#plot "lageneric_data.dat" every 3:3 using 1:2:($3*4):($4*4) with vectors
+#plot "/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/lageneric_data.dat" every 3:3 using 1:2:($3*4):($4*4) with vectors

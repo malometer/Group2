@@ -21,7 +21,7 @@ void MainWindow::GAUSS()
         int c=0;
 
         ofstream datafile;
-        datafile.open("lageneric_data.dat",ios::out);
+        datafile.open("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/lageneric_data.dat",ios::out);
         cout << datafile.is_open() << endl;
 
         for(m=0; m<=(loop-1); m++) {
@@ -104,7 +104,9 @@ void MainWindow::GAUSS()
 
             cout << "done m8" << endl;
 
-            QProcess::startDetached("./laplotter.sh");
+            QProcess::startDetached("ls");
+            QProcess::startDetached("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/laplotter.sh");
+            //system("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/laplotter.sh");
             QCoreApplication::processEvents();
 
     }

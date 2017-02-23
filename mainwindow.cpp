@@ -35,9 +35,6 @@ float quad_a, quad_b, quad_c, quad_v0;
 
 
 
-
-
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -209,7 +206,7 @@ void MainWindow::on_pushButton_4_clicked()
     if (ui->radioJ->isChecked()) {
         JACOBI(); ui->interact->hide();
         usleep(5000000);
-        QPixmap plot("plot1.jpg");
+        QPixmap plot("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/plot1.jpg");
         ui->gavsLabel->resize(500,500);
          ui->gavsLabel->setScaledContents(false);
         ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -219,7 +216,7 @@ void MainWindow::on_pushButton_4_clicked()
         QCoreApplication::processEvents();
         usleep(5000000);
         QCoreApplication::processEvents();
-        QPixmap plot("plot1.jpg");
+        QPixmap plot("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/plot1.jpg");
         ui->gavsLabel->resize(500,500);
          ui->gavsLabel->setScaledContents(false);
         ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -228,7 +225,7 @@ void MainWindow::on_pushButton_4_clicked()
     } else if (ui->radioS->isChecked()) {
         SOR();
         usleep(5000000);
-        QPixmap plot("plot1.jpg");
+        QPixmap plot("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/plot1.jpg");
         ui->gavsLabel->resize(500,500);
          ui->gavsLabel->setScaledContents(false);
         ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -238,7 +235,7 @@ void MainWindow::on_pushButton_4_clicked()
         QCoreApplication::processEvents();
         usleep(5000000);
         QCoreApplication::processEvents();
-        QPixmap plot("plot1.jpg");
+        QPixmap plot("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/plot1.jpg");
         ui->gavsLabel->resize(500,500);
          ui->gavsLabel->setScaledContents(false);
         ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -328,7 +325,7 @@ void MainWindow::stopBar()
 
 void MainWindow::on_tab1_clicked()
 {
-    QPixmap plot("plot1.jpg");
+    QPixmap plot("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/plot1.jpg");
     ui->gavsLabel->resize(500,500);
     ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->gavsLabel->setPixmap(plot);
@@ -337,7 +334,7 @@ void MainWindow::on_tab1_clicked()
 
 void MainWindow::on_tab2_clicked()
 {
-    QPixmap plot("contour.jpg");
+    QPixmap plot("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/contour.jpg");
     ui->gavsLabel->resize(500,500);
     ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->gavsLabel->setPixmap(plot);
@@ -347,7 +344,7 @@ void MainWindow::on_tab2_clicked()
 
 void MainWindow::on_interact_clicked()
 {
-     QProcess::startDetached("./test.sh");
+     QProcess::startDetached("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/test.sh");
 
 }
 

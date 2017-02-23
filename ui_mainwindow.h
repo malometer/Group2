@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.6.1
+** Created by: Qt User Interface Compiler version 5.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -14,7 +14,6 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QFrame>
-#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLayout>
@@ -41,7 +40,6 @@ public:
     QLabel *gavsLabel;
     QToolButton *tab1;
     QToolButton *tab2;
-    QGroupBox *groupBox;
     QToolBox *toolBox;
     QWidget *page_2;
     QFrame *frame_2;
@@ -145,7 +143,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1059, 894);
+        MainWindow->resize(1059, 744);
         MainWindow->setAutoFillBackground(false);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
@@ -164,19 +162,16 @@ public:
         gavsLabel->setGeometry(QRect(520, 320, 500, 500));
         tab1 = new QToolButton(centralWidget);
         tab1->setObjectName(QStringLiteral("tab1"));
-        tab1->setGeometry(QRect(750, 800, 31, 29));
+        tab1->setGeometry(QRect(750, 280, 31, 29));
         tab2 = new QToolButton(centralWidget);
         tab2->setObjectName(QStringLiteral("tab2"));
-        tab2->setGeometry(QRect(780, 800, 31, 29));
-        groupBox = new QGroupBox(centralWidget);
-        groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setGeometry(QRect(260, 30, 191, 171));
+        tab2->setGeometry(QRect(780, 280, 31, 29));
         toolBox = new QToolBox(centralWidget);
         toolBox->setObjectName(QStringLiteral("toolBox"));
-        toolBox->setGeometry(QRect(20, 10, 451, 731));
+        toolBox->setGeometry(QRect(20, 10, 451, 451));
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
-        page_2->setGeometry(QRect(0, 0, 451, 521));
+        page_2->setGeometry(QRect(0, 0, 451, 247));
         frame_2 = new QFrame(page_2);
         frame_2->setObjectName(QStringLiteral("frame_2"));
         frame_2->setGeometry(QRect(280, 20, 141, 101));
@@ -222,6 +217,7 @@ public:
         label_6->raise();
         page_3 = new QWidget();
         page_3->setObjectName(QStringLiteral("page_3"));
+        page_3->setGeometry(QRect(0, 0, 451, 247));
         widget_3 = new QWidget(page_3);
         widget_3->setObjectName(QStringLiteral("widget_3"));
         widget_3->setGeometry(QRect(300, 30, 151, 111));
@@ -272,6 +268,7 @@ public:
         toolBox->addItem(page_3, QStringLiteral("Radial Bound"));
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));
+        page_4->setGeometry(QRect(0, 0, 451, 247));
         recButoon = new QPushButton(page_4);
         recButoon->setObjectName(QStringLiteral("recButoon"));
         recButoon->setGeometry(QRect(320, 200, 95, 31));
@@ -317,6 +314,7 @@ public:
         toolBox->addItem(page_4, QStringLiteral("Rectangular Bound"));
         page_6 = new QWidget();
         page_6->setObjectName(QStringLiteral("page_6"));
+        page_6->setGeometry(QRect(0, 0, 451, 247));
         digButton_2 = new QPushButton(page_6);
         digButton_2->setObjectName(QStringLiteral("digButton_2"));
         digButton_2->setGeometry(QRect(320, 170, 95, 31));
@@ -356,6 +354,7 @@ public:
         toolBox->addItem(page_6, QStringLiteral("Custom Line"));
         page_5 = new QWidget();
         page_5->setObjectName(QStringLiteral("page_5"));
+        page_5->setGeometry(QRect(0, 0, 451, 247));
         digButton = new QPushButton(page_5);
         digButton->setObjectName(QStringLiteral("digButton"));
         digButton->setGeometry(QRect(320, 160, 95, 31));
@@ -391,6 +390,7 @@ public:
         toolBox->addItem(page_5, QStringLiteral("Linear Equation"));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
+        page->setGeometry(QRect(0, 0, 451, 247));
         label_31 = new QLabel(page);
         label_31->setObjectName(QStringLiteral("label_31"));
         label_31->setGeometry(QRect(10, 0, 321, 21));
@@ -495,7 +495,6 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         line->raise();
         line_2->raise();
-        groupBox->raise();
         gavsLabel->raise();
         tab2->raise();
         tab1->raise();
@@ -515,7 +514,7 @@ public:
         maxX->raise();
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1059, 27));
+        menuBar->setGeometry(QRect(0, 0, 1059, 22));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -526,7 +525,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        toolBox->setCurrentIndex(2);
+        toolBox->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -534,70 +533,70 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
         gavsLabel->setText(QString());
-        tab1->setText(QApplication::translate("MainWindow", "1", 0));
-        tab2->setText(QApplication::translate("MainWindow", "2", 0));
-        pushButton->setText(QApplication::translate("MainWindow", "Add", 0));
-        radioX->setText(QApplication::translate("MainWindow", "X parallel", 0));
-        radioY->setText(QApplication::translate("MainWindow", "Y parallel", 0));
-        label_5->setText(QApplication::translate("MainWindow", "Point:", 0));
-        label_6->setText(QApplication::translate("MainWindow", "V0:", 0));
-        toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("MainWindow", "Simple Bound", 0));
-        radioFilled->setText(QApplication::translate("MainWindow", "Filled", 0));
-        radioHollow->setText(QApplication::translate("MainWindow", "Hollow", 0));
-        label_9->setText(QApplication::translate("MainWindow", "Y:", 0));
-        label_11->setText(QApplication::translate("MainWindow", "Radius: ", 0));
-        pushButton_3->setText(QApplication::translate("MainWindow", "Add", 0));
-        label_10->setText(QApplication::translate("MainWindow", "Centre:", 0));
-        label_8->setText(QApplication::translate("MainWindow", "X:", 0));
-        label_12->setText(QApplication::translate("MainWindow", "V0:", 0));
-        toolBox->setItemText(toolBox->indexOf(page_3), QApplication::translate("MainWindow", "Radial Bound", 0));
-        recButoon->setText(QApplication::translate("MainWindow", "Add", 0));
-        radioHollow_2->setText(QApplication::translate("MainWindow", "Hollow", 0));
-        label_15->setText(QApplication::translate("MainWindow", "X:", 0));
+        tab1->setText(QApplication::translate("MainWindow", "1", Q_NULLPTR));
+        tab2->setText(QApplication::translate("MainWindow", "2", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("MainWindow", "Add", Q_NULLPTR));
+        radioX->setText(QApplication::translate("MainWindow", "X parallel", Q_NULLPTR));
+        radioY->setText(QApplication::translate("MainWindow", "Y parallel", Q_NULLPTR));
+        label_5->setText(QApplication::translate("MainWindow", "Point:", Q_NULLPTR));
+        label_6->setText(QApplication::translate("MainWindow", "V0:", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("MainWindow", "Simple Bound", Q_NULLPTR));
+        radioFilled->setText(QApplication::translate("MainWindow", "Filled", Q_NULLPTR));
+        radioHollow->setText(QApplication::translate("MainWindow", "Hollow", Q_NULLPTR));
+        label_9->setText(QApplication::translate("MainWindow", "Y:", Q_NULLPTR));
+        label_11->setText(QApplication::translate("MainWindow", "Radius: ", Q_NULLPTR));
+        pushButton_3->setText(QApplication::translate("MainWindow", "Add", Q_NULLPTR));
+        label_10->setText(QApplication::translate("MainWindow", "Centre:", Q_NULLPTR));
+        label_8->setText(QApplication::translate("MainWindow", "X:", Q_NULLPTR));
+        label_12->setText(QApplication::translate("MainWindow", "V0:", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page_3), QApplication::translate("MainWindow", "Radial Bound", Q_NULLPTR));
+        recButoon->setText(QApplication::translate("MainWindow", "Add", Q_NULLPTR));
+        radioHollow_2->setText(QApplication::translate("MainWindow", "Hollow", Q_NULLPTR));
+        label_15->setText(QApplication::translate("MainWindow", "X:", Q_NULLPTR));
         width->setText(QString());
-        label_16->setText(QApplication::translate("MainWindow", "Origin", 0));
-        label_14->setText(QApplication::translate("MainWindow", "Y:", 0));
-        label_19->setText(QApplication::translate("MainWindow", "height:", 0));
-        radioFilled_2->setText(QApplication::translate("MainWindow", "Filled", 0));
-        label_13->setText(QApplication::translate("MainWindow", "V0:", 0));
-        label_18->setText(QApplication::translate("MainWindow", "length:", 0));
-        toolBox->setItemText(toolBox->indexOf(page_4), QApplication::translate("MainWindow", "Rectangular Bound", 0));
-        digButton_2->setText(QApplication::translate("MainWindow", "Add", 0));
-        label_27->setText(QApplication::translate("MainWindow", "X1 =", 0));
-        dx_4->setText(QApplication::translate("MainWindow", "Y2=", 0));
-        label_29->setText(QApplication::translate("MainWindow", "X2=", 0));
-        dx_1->setText(QApplication::translate("MainWindow", "Y1=", 0));
-        label_28->setText(QApplication::translate("MainWindow", "Using two points as reference", 0));
-        label_21->setText(QApplication::translate("MainWindow", "V0:", 0));
-        toolBox->setItemText(toolBox->indexOf(page_6), QApplication::translate("MainWindow", "Custom Line", 0));
-        digButton->setText(QApplication::translate("MainWindow", "Add", 0));
-        label_24->setText(QApplication::translate("MainWindow", "x +", 0));
-        label_26->setText(QApplication::translate("MainWindow", "Straight line of form y = mx+c", 0));
-        label_25->setText(QApplication::translate("MainWindow", "y =", 0));
-        label_22->setText(QApplication::translate("MainWindow", "Diagonal line", 0));
-        label_20->setText(QApplication::translate("MainWindow", "V0:", 0));
-        toolBox->setItemText(toolBox->indexOf(page_5), QApplication::translate("MainWindow", "Linear Equation", 0));
-        label_31->setText(QApplication::translate("MainWindow", "Quadratic equation of form y = ax^2 + bx + c", 0));
-        label->setText(QApplication::translate("MainWindow", "y =", 0));
-        label_2->setText(QApplication::translate("MainWindow", "x^2", 0));
-        label_7->setText(QApplication::translate("MainWindow", "+", 0));
-        label_17->setText(QApplication::translate("MainWindow", "x", 0));
-        label_23->setText(QApplication::translate("MainWindow", "+", 0));
-        label_32->setText(QApplication::translate("MainWindow", "V0: ", 0));
-        pushButton_5->setText(QApplication::translate("MainWindow", "Add", 0));
-        toolBox->setItemText(toolBox->indexOf(page), QApplication::translate("MainWindow", "Quadratic Equation", 0));
-        pushButton_4->setText(QApplication::translate("MainWindow", "Run", 0));
-        label_4->setText(QApplication::translate("MainWindow", "#loops:", 0));
-        radioM->setText(QApplication::translate("MainWindow", "Multigrid", 0));
-        radioJ->setText(QApplication::translate("MainWindow", "Jacobi", 0));
-        radioG->setText(QApplication::translate("MainWindow", "Gauss-Seidel", 0));
-        radioS->setText(QApplication::translate("MainWindow", "SOR", 0));
-        label_3->setText(QApplication::translate("MainWindow", "Grid size:", 0));
-        pushButton_2->setText(QApplication::translate("MainWindow", "Create/Reset", 0));
-        label_30->setText(QApplication::translate("MainWindow", "General", 0));
-        interact->setText(QApplication::translate("MainWindow", "Interact", 0));
+        label_16->setText(QApplication::translate("MainWindow", "Origin", Q_NULLPTR));
+        label_14->setText(QApplication::translate("MainWindow", "Y:", Q_NULLPTR));
+        label_19->setText(QApplication::translate("MainWindow", "height:", Q_NULLPTR));
+        radioFilled_2->setText(QApplication::translate("MainWindow", "Filled", Q_NULLPTR));
+        label_13->setText(QApplication::translate("MainWindow", "V0:", Q_NULLPTR));
+        label_18->setText(QApplication::translate("MainWindow", "length:", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page_4), QApplication::translate("MainWindow", "Rectangular Bound", Q_NULLPTR));
+        digButton_2->setText(QApplication::translate("MainWindow", "Add", Q_NULLPTR));
+        label_27->setText(QApplication::translate("MainWindow", "X1 =", Q_NULLPTR));
+        dx_4->setText(QApplication::translate("MainWindow", "Y2=", Q_NULLPTR));
+        label_29->setText(QApplication::translate("MainWindow", "X2=", Q_NULLPTR));
+        dx_1->setText(QApplication::translate("MainWindow", "Y1=", Q_NULLPTR));
+        label_28->setText(QApplication::translate("MainWindow", "Using two points as reference", Q_NULLPTR));
+        label_21->setText(QApplication::translate("MainWindow", "V0:", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page_6), QApplication::translate("MainWindow", "Custom Line", Q_NULLPTR));
+        digButton->setText(QApplication::translate("MainWindow", "Add", Q_NULLPTR));
+        label_24->setText(QApplication::translate("MainWindow", "x +", Q_NULLPTR));
+        label_26->setText(QApplication::translate("MainWindow", "Straight line of form y = mx+c", Q_NULLPTR));
+        label_25->setText(QApplication::translate("MainWindow", "y =", Q_NULLPTR));
+        label_22->setText(QApplication::translate("MainWindow", "Diagonal line", Q_NULLPTR));
+        label_20->setText(QApplication::translate("MainWindow", "V0:", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page_5), QApplication::translate("MainWindow", "Linear Equation", Q_NULLPTR));
+        label_31->setText(QApplication::translate("MainWindow", "Quadratic equation of form y = ax^2 + bx + c", Q_NULLPTR));
+        label->setText(QApplication::translate("MainWindow", "y =", Q_NULLPTR));
+        label_2->setText(QApplication::translate("MainWindow", "x^2", Q_NULLPTR));
+        label_7->setText(QApplication::translate("MainWindow", "+", Q_NULLPTR));
+        label_17->setText(QApplication::translate("MainWindow", "x", Q_NULLPTR));
+        label_23->setText(QApplication::translate("MainWindow", "+", Q_NULLPTR));
+        label_32->setText(QApplication::translate("MainWindow", "V0: ", Q_NULLPTR));
+        pushButton_5->setText(QApplication::translate("MainWindow", "Add", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page), QApplication::translate("MainWindow", "Quadratic Equation", Q_NULLPTR));
+        pushButton_4->setText(QApplication::translate("MainWindow", "Run", Q_NULLPTR));
+        label_4->setText(QApplication::translate("MainWindow", "#loops:", Q_NULLPTR));
+        radioM->setText(QApplication::translate("MainWindow", "Multigrid", Q_NULLPTR));
+        radioJ->setText(QApplication::translate("MainWindow", "Jacobi", Q_NULLPTR));
+        radioG->setText(QApplication::translate("MainWindow", "Gauss-Seidel", Q_NULLPTR));
+        radioS->setText(QApplication::translate("MainWindow", "SOR", Q_NULLPTR));
+        label_3->setText(QApplication::translate("MainWindow", "Grid size:", Q_NULLPTR));
+        pushButton_2->setText(QApplication::translate("MainWindow", "Create/Reset", Q_NULLPTR));
+        label_30->setText(QApplication::translate("MainWindow", "General", Q_NULLPTR));
+        interact->setText(QApplication::translate("MainWindow", "Interact", Q_NULLPTR));
         origin->setText(QString());
         maxX->setText(QString());
         maxY->setText(QString());
