@@ -57,3 +57,19 @@ void MainWindow::create_circle()
             }
         }
 }
+
+void MainWindow::point_source()
+{
+
+    double V0;
+    V0 = radialVal;
+    int cx;
+    cx = cX;
+    int cy;
+    cy = cY;
+
+    bounds[cx][cy] = false;
+    values[cx][cy] = V0;
+
+
+}

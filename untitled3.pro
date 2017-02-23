@@ -31,7 +31,8 @@ SOURCES += main.cpp\
     sor.cpp \
     mysquare.cpp \
     create_box.cpp \
-    diagonal.cpp
+    diagonal.cpp \
+    multigridQT.cpp
 
 HEADERS  += mainwindow.h \
     mysquare.h
@@ -39,4 +40,5 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui
 
 DISTFILES += \
-    test.gnu
+    test.gnu \
+    radar.gif

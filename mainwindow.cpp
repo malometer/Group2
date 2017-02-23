@@ -8,6 +8,7 @@
 #include <QProcess>
 #include <QPixmap>
 #include <QCoreApplication>
+#include <QMovie>
 
 using namespace std;
 
@@ -21,10 +22,11 @@ int cY = 0;
 float radialVal=0;
 int widthVal = 0;
 int lengthVal = 0;
-int grid,loop;
+int grid,loop,m;
 float i2, j2, w;
-double values[10000][10000], values_new[10000][10000];
-bool bounds[10000][10000];
+double values[2000][2000], values_new[2000][2000];
+double subBench [2000][2000];
+bool bounds[2000][2000];
 double closeness, square_dist;
 double dist;
 bool HorF;
@@ -32,6 +34,16 @@ bool XorY;
 float digm, digc, digval, digval2;
 int dix_1, dix_2, diy_1, diy_2;
 float quad_a, quad_b, quad_c, quad_v0;
+
+double init_clock=0, fin_clock=0, clock_dif=0;
+
+
+//multigrid
+
+int grid_num, coarse_loops, smoothing;
+
+
+
 
 
 
@@ -52,6 +64,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tab1->hide();
     ui->tab2->hide();
     ui->interact->hide();
+
+    ui->coursness->hide();
+    ui->gridLab->hide();
+    ui->gridLab2->hide();
+    ui->gridNumBox->hide();
+    ui->loopsBox->hide();
+
+    ui->looper->show();
+    ui->noLoops->show();
 
 }
 
@@ -81,6 +102,8 @@ void MainWindow::run_code() {
         loop = 100;
         simpleDist = 0;
         simpleVal = 0;
+
+
 
 }
 
@@ -201,12 +224,23 @@ void MainWindow::on_pushButton_4_clicked()
 
     progressBar();
 
+    QMovie *radar = new QMovie("radar.gif");
+    ui->radarLabel->setMovie(radar);
+    ui->radarLabel->show();
+    radar->start();
+
+
+
+    init_clock = time(NULL);
+    clock_t t;
+
+    t = clock();
 
 
     if (ui->radioJ->isChecked()) {
         JACOBI(); ui->interact->hide();
         usleep(5000000);
-        QPixmap plot("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/plot1.jpg");
+        QPixmap plot("plot1.jpg");
         ui->gavsLabel->resize(500,500);
          ui->gavsLabel->setScaledContents(false);
         ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -216,35 +250,64 @@ void MainWindow::on_pushButton_4_clicked()
         QCoreApplication::processEvents();
         usleep(5000000);
         QCoreApplication::processEvents();
-        QPixmap plot("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/plot1.jpg");
+        QPixmap plot("plot1.jpg");
         ui->gavsLabel->resize(500,500);
          ui->gavsLabel->setScaledContents(false);
         ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         ui->gavsLabel->setPixmap(plot);
 
+
     } else if (ui->radioS->isChecked()) {
         SOR();
         usleep(5000000);
-        QPixmap plot("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/plot1.jpg");
+        QPixmap plot("plot1.jpg");
         ui->gavsLabel->resize(500,500);
          ui->gavsLabel->setScaledContents(false);
         ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         ui->gavsLabel->setPixmap(plot);
-    } else {
+
+     } else if (ui->radioM->isChecked()) {
+
+
+         grid_num = ui->gridNumBox->text().toInt();
+         coarse_loops = ui->loopsBox->text().toInt();
+
+         multigrid();
+         usleep(5000000);
+         QPixmap plot("plot1.jpg");
+         ui->gavsLabel->resize(500,500);
+         ui->gavsLabel->setScaledContents(false);
+         ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+         ui->gavsLabel->setPixmap(plot);
+
+   } else {
         GAUSS();
         QCoreApplication::processEvents();
         usleep(5000000);
         QCoreApplication::processEvents();
-        QPixmap plot("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/plot1.jpg");
+        QPixmap plot("plot1.jpg");
         ui->gavsLabel->resize(500,500);
          ui->gavsLabel->setScaledContents(false);
         ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         ui->gavsLabel->setPixmap(plot);
     }
 
+    fin_clock = time(NULL);
+
+    clock_dif = fin_clock - init_clock;
+
+
+    t = clock()-t;
+
+    cout<< "t is " << t << endl;
+
     ui->tab1->show();
     ui->tab2->show();
     stopBar();
+    cout << "m = " << m << endl;
+    ui->loopLabel->setText("#loops: " +(QString::number(m)));
+    ui->timeLabel->setText("Elapsed time: " +(QString::number(clock_dif))+"s");
+    ui->CPUlabel->setText("#CPU ticks: " +(QString::number(t)));
 }
 
 void MainWindow::myPainter() {
@@ -325,7 +388,7 @@ void MainWindow::stopBar()
 
 void MainWindow::on_tab1_clicked()
 {
-    QPixmap plot("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/plot1.jpg");
+    QPixmap plot("plot1.jpg");
     ui->gavsLabel->resize(500,500);
     ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->gavsLabel->setPixmap(plot);
@@ -334,7 +397,7 @@ void MainWindow::on_tab1_clicked()
 
 void MainWindow::on_tab2_clicked()
 {
-    QPixmap plot("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/contour.jpg");
+    QPixmap plot("contour.jpg");
     ui->gavsLabel->resize(500,500);
     ui->gavsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->gavsLabel->setPixmap(plot);
@@ -344,7 +407,7 @@ void MainWindow::on_tab2_clicked()
 
 void MainWindow::on_interact_clicked()
 {
-     QProcess::startDetached("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/test.sh");
+     QProcess::startDetached("./test.sh");
 
 }
 
@@ -410,4 +473,62 @@ void MainWindow::on_pushButton_5_clicked()
 
     create_diagonal_quad();
     myPainter();
+}
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    cX = ui->pX->text().toFloat();
+    cY = ui->pY->text().toFloat();
+    radialVal = ui->pV0->text().toFloat();
+
+    point_source();
+    myPainter();
+}
+
+void MainWindow::on_radioM_clicked()
+{
+    ui->coursness->show();
+    ui->gridLab->show();
+    ui->gridLab2->show();
+    ui->gridNumBox->show();
+    ui->loopsBox->show();
+
+    ui->looper->hide();
+    ui->noLoops->hide();
+}
+
+void MainWindow::on_radioJ_clicked()
+{
+    ui->coursness->hide();
+    ui->gridLab->hide();
+    ui->gridLab2->hide();
+    ui->gridNumBox->hide();
+    ui->loopsBox->hide();
+
+    ui->looper->show();
+    ui->noLoops->show();
+}
+
+void MainWindow::on_radioG_clicked()
+{
+    ui->coursness->hide();
+    ui->gridLab->hide();
+    ui->gridLab2->hide();
+    ui->gridNumBox->hide();
+    ui->loopsBox->hide();
+
+    ui->looper->show();
+    ui->noLoops->show();
+}
+
+void MainWindow::on_radioS_clicked()
+{
+    ui->coursness->hide();
+    ui->gridLab->hide();
+    ui->gridLab2->hide();
+    ui->gridNumBox->hide();
+    ui->loopsBox->hide();
+
+    ui->looper->show();
+    ui->noLoops->show();
 }

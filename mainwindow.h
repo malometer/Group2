@@ -26,15 +26,17 @@
 #include <sstream>
 #include <cmath>
 #include <fstream>
+#include <vector>
 
 #include <QtGui>
 #include <QtCore>
 #include "mysquare.h"
 
-extern int grid,loop;
+extern int grid,loop,m;
 extern float i2, j2, w;
-extern double values[10000][10000], values_new[10000][10000];
-extern bool bounds[10000][10000];
+extern double values[2000][2000], values_new[2000][2000];
+extern bool bounds[2000][2000];
+extern double subBench [2000][2000];
 extern double closeness, square_dist;
 extern double dist;
 extern int simpleDist;
@@ -50,6 +52,10 @@ extern int lengthVal;
 extern float digm, digc, digval, digval2;
 extern int dix_1, dix_2, diy_1, diy_2;
 extern float quad_a, quad_b, quad_c, quad_v0;
+
+//multigrid
+
+extern int grid_num, coarse_loops, smoothing;
 
 
 namespace Ui {
@@ -78,10 +84,12 @@ private slots:
     void create_line();
     void create_circle();
     void create_box();
+    void point_source();
     void run_code();
     void JACOBI();
     void GAUSS();
     void SOR();
+    void multigrid();
     void create_diagonal1();
     void create_diagonal2();
     void create_diagonal_quad();
@@ -110,6 +118,16 @@ private slots:
     void on_digButton_2_clicked();
 
     void on_pushButton_5_clicked();
+
+    void on_pushButton_6_clicked();
+
+    void on_radioM_clicked();
+
+    void on_radioJ_clicked();
+
+    void on_radioG_clicked();
+
+    void on_radioS_clicked();
 
 private:
 

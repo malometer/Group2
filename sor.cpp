@@ -8,15 +8,17 @@ void MainWindow::SOR()
     cout << "sor" << endl;
 
 
-        int m=0;
+        m=0;
         int i=0;
         int j=0;
-        float w = 1.6;
-        double p =0.99999;
+        int w = 1.6;
+        float p = 0.9999999;
         int c;
 
+        p = 1- ((float)(1/loop));
+
         ofstream datafile;
-        datafile.open("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/lageneric_data.dat",ios::out);
+        datafile.open("lageneric_data.dat",ios::out);
 
         for(m=0; m<=(loop-1); m++) {
             QCoreApplication::processEvents();
@@ -106,5 +108,5 @@ void MainWindow::SOR()
         cout << "done m8" << endl;
 
 
-       QProcess::startDetached("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/laplotter.sh");
+       QProcess::startDetached("./laplotter.sh");
 }

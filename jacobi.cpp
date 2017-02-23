@@ -7,17 +7,17 @@ void MainWindow::JACOBI()
 
     cout << "Jacobi" << endl;
 
-            int m=0;
+            m=0;
             int i=0;
             int j=0;
             int c=0;
 
             ofstream datafile;
-            datafile.open("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/lageneric_data.dat",ios::out);
+            datafile.open("lageneric_data.dat",ios::out);
 
 
             for(m=0; m<=(loop-1); m++) {
-    QCoreApplication::processEvents();
+            QCoreApplication::processEvents();
                 for (j=1;j<=(grid-2);j++) {
                         for (i=1;i<=(grid-2);i++){
 
@@ -104,6 +104,6 @@ void MainWindow::JACOBI()
 
             datafile.close();
 
-            QProcess::startDetached("/Users/Honi/Documents/SelfEnclosedGUI/HERE/new/laplotter.sh");
+            QProcess::startDetached("./laplotter.sh");
 
     }
